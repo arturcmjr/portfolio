@@ -1,3 +1,6 @@
+@use "variables" as var;
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
 body,
 html {
   margin: 0;
@@ -5,5 +8,20 @@ html {
   overflow: hidden;
   height: 100%;
   width: 100%;
-  background-color: #060A0D;
+  background-color: var.$background-color;
+  color: var.$primary-font-color;
+  font-family: var.$primary-font;
+}
+
+body {
+  overflow: auto;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }

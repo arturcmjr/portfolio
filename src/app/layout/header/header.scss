@@ -1,0 +1,40 @@
+@use "variables" as var;
+
+:host {
+  position: fixed;
+  margin: var.$spacing-unit * 2;
+  padding: (var.$spacing-unit * 2) (var.$spacing-unit * 4);
+  border-radius: 40px;
+  display: flex;
+  justify-content: space-evenly;
+  gap: var.$spacing-unit;
+  transition: transform 0.3s ease-in-out;
+  counter-reset: button-counter;
+
+  &.hidden {
+    transform: translateY(-150%);
+  }
+
+  >button {
+    background: none;
+    border: none;
+    color: var.$primary-font-color;
+    font-size: 1.05rem;
+    counter-increment: button-counter;
+    cursor: pointer;
+    transition: color 150ms ease-in-out, transform 150ms ease-in-out;
+
+    &::before {
+      content: counter(button-counter, decimal-leading-zero);
+      margin-right: var.$spacing-unit;
+      font-family: var.$secondary-font;
+      color: var.$accent-font-color;
+      font-size: .8rem;
+    }
+
+    &:hover {
+      color: var.$accent-font-color;
+      transform: rotateZ(2deg) scale(1.1);
+    }
+  }
+}

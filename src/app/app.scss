@@ -1,6 +1,16 @@
 :host {
   app-night-sky.top {
     z-index: 1;
-    pointer-events: none;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .filler {
+    height: 500vh;
+    width: 100%;
   }
 }
