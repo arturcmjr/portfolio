@@ -1,9 +1,14 @@
 @use "variables" as var;
 
-// gradient text mixin
 @mixin gradient-text() {
   background: -webkit-linear-gradient(var.$grad-start, var.$grad-end);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+@mixin mobile {
+  @media (max-width: 600px) {
+    @content;
+  }
 }

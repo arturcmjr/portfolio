@@ -120,7 +120,7 @@ export class NightSkyComponent implements AfterViewInit, OnDestroy {
       }
 
       // draw star
-      this.ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+      this.ctx.fillStyle = `rgba(110, 110, 110, ${star.alpha})`;
       this.ctx.beginPath();
       this.ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
       this.ctx.fill();

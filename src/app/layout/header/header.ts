@@ -6,6 +6,7 @@ import {
   OnInit,
   OnDestroy,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
 
 @Component({
@@ -16,10 +17,12 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'glass',
-    '[class.hidden]': 'hidden()',
+    '[class.hidden]': 'hidden() || hiddenInput()',
   },
 })
 export class Header implements OnInit, OnDestroy {
+  hiddenInput = input<boolean>(false, { alias: 'hidden' });
+
   private readonly document = inject(DOCUMENT);
   protected readonly hidden = signal(false);
 

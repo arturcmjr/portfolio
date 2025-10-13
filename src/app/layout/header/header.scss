@@ -11,6 +11,7 @@
   gap: var.$spacing-unit;
   transition: transform 0.3s ease-in-out;
   counter-reset: button-counter;
+  z-index: 10;
 
   &.hidden {
     transform: translateY(-150%);
@@ -34,7 +35,7 @@
     }
 
     &:hover {
-      color: var.$accent-font-color;
+      color: var.$accent-color;
       transform: rotateZ(2deg) scale(1.1);
     }
   }

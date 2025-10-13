@@ -1,0 +1,142 @@
+@use "variables" as var;
+@use "mixins" as mix;
+
+$greeting-duration: 0.5s;
+$total-greeting-duration: $greeting-duration * 2 + 0.2s;
+
+:host {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.greetings {
+  display: flex;
+  transform: scale(5);
+  animation: greetings-container-out 0.5s forwards;
+  animation-delay: $total-greeting-duration;
+
+  > span {
+    display: block;
+    opacity: 0;
+    animation: greetings-pop-in 0.5s forwards;
+
+    &:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    &:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+  }
+
+  @keyframes greetings-container-out {
+    0% {
+      transform: scale(5);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes greetings-pop-in {
+    0% {
+      transform: translateY(100%) rotateZ(-10deg);
+      opacity: 0;
+    }
+    60% {
+      transform: translateY(-20%) rotateZ(5deg);
+      opacity: 1;
+    }
+    80% {
+      transform: translateY(10%) rotateZ(-2deg);
+    }
+    100% {
+      transform: translateY(0) rotateZ(0);
+      opacity: 1;
+    }
+  }
+}
+
+.name {
+  > span {
+    display: block;
+    overflow: hidden;
+    opacity: 0;
+    border-right: 0.15em solid var.$accent-color;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 0.15em;
+    font-size: 5.5rem;
+    font-family: var.$secondary-font;
+    font-weight: 700;
+    animation: 
+      typing 1s steps(12, end),
+      blink-caret 0.75s step-end infinite;
+    animation-fill-mode: forwards;
+    animation-delay: $total-greeting-duration;
+
+    @include mix.mobile {
+      font-size: 3.5rem;
+    }
+  }
+
+  @keyframes typing {
+    from {
+      opacity: 1;
+      width: 0;
+    }
+    to {
+      opacity: 1;
+      width: 100%;
+    }
+  }
+
+  @keyframes blink-caret {
+    from,
+    to {
+      border-color: transparent;
+    }
+    50% {
+      border-color: var.$accent-color;
+    }
+  }
+}
+
+p {
+  width: 90%;
+  max-width: 600px;
+  opacity: 0;
+  text-align: center;
+  color: var.$secondary-font-color;
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+  animation: fade-in-bottom 0.5s forwards;
+  animation-delay: calc(#{$total-greeting-duration} + 1.2s);
+
+  @include mix.mobile {
+    font-size: 1.1rem;
+    line-height: 1.3rem;
+  }
+
+  @keyframes fade-in-bottom {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
