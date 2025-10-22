@@ -13,6 +13,10 @@ html {
   overflow: hidden;
 }
 
+html, body, * {
+  cursor: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=='), auto !important;
+}
+
 .glass {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 16px;

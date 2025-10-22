@@ -1,0 +1,117 @@
+$cursor-color: #fff;
+$cursor-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+
+$crosshair-width: 2px;
+$crosshair-length: 7px;
+$dot-size: 4px;
+$dot-radius: 50%;
+
+$crosshair-gap: 5px;
+$crosshair-gap-hover: 10px;
+$crosshair-gap-clicked: 3px;
+
+.custom-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s linear, opacity 0.2s ease;
+
+  .crosshair,
+  .dot {
+    background-color: $cursor-color;
+    box-shadow: $cursor-shadow;
+    position: absolute;
+  }
+
+  .crosshair {
+    transition: all 0.05s ease;
+
+    &.top {
+      width: $crosshair-width;
+      height: $crosshair-length;
+      bottom: $crosshair-gap;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &.right {
+      width: $crosshair-length;
+      height: $crosshair-width;
+      left: $crosshair-gap;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &.bottom {
+      width: $crosshair-width;
+      height: $crosshair-length;
+      top: $crosshair-gap;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &.left {
+      width: $crosshair-length;
+      height: $crosshair-width;
+      right: $crosshair-gap;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .dot {
+    width: $dot-size;
+    height: $dot-size;
+    border-radius: $dot-radius;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &.cursor-pointer {
+    transform: rotate(45deg);
+
+    .crosshair {
+      &.top {
+        bottom: $crosshair-gap-hover;
+      }
+
+      &.right {
+        left: $crosshair-gap-hover;
+      }
+
+      &.bottom {
+        top: $crosshair-gap-hover;
+      }
+
+      &.left {
+        right: $crosshair-gap-hover;
+      }
+    }
+  }
+
+  &.clicked {
+    .crosshair {
+      &.top {
+        bottom: $crosshair-gap-clicked;
+      }
+
+      &.right {
+        left: $crosshair-gap-clicked;
+      }
+
+      &.bottom {
+        top: $crosshair-gap-clicked;
+      }
+
+      &.left {
+        right: $crosshair-gap-clicked;
+      }
+    }
+  }
+
+  &.hidden {
+    opacity: 0;
+  }
+}

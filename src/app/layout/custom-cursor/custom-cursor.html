@@ -1,0 +1,12 @@
+<div
+  class="custom-cursor"
+  [style]="{ top: y() + 'px', left: x() + 'px' }"
+  [class]="cursorClass()"
+  [class.clicked]="isClicked()"
+>
+  <div class="crosshair top"></div>
+  <div class="crosshair right"></div>
+  <div class="crosshair bottom"></div>
+  <div class="crosshair left"></div>
+  <div class="dot"></div>
+</div>

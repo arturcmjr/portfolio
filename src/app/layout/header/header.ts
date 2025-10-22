@@ -8,10 +8,11 @@ import {
   ChangeDetectionStrategy,
   input,
 } from '@angular/core';
+import { CursorType } from '../../shared/directives/cursor-type';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [CursorType],
   templateUrl: './header.html',
   styleUrl: './header.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

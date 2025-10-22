@@ -2,10 +2,11 @@ import { Component, DOCUMENT, inject, OnInit, signal, WritableSignal } from '@an
 import { NightSkyComponent } from './layout/night-sky/night-sky';
 import { Header } from './layout/header/header';
 import { Intro } from './sections/intro/intro';
+import { CustomCursor } from './layout/custom-cursor/custom-cursor';
 
 @Component({
   selector: 'app-root',
-  imports: [NightSkyComponent, Header, Intro],
+  imports: [NightSkyComponent, Header, Intro, CustomCursor],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
