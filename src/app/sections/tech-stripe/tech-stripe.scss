@@ -1,0 +1,37 @@
+@use "variables" as var;
+
+$duration: 40s;
+
+.marquee-container {
+  height: 55px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  background-color: #292c2fa1;
+  width: 100vw;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee {
+  display: inline-flex;
+  gap: var.$spacing-unit * 10;
+  animation: scroll-left $duration linear infinite;
+}
+
+.marquee span {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var.$secondary-font-color;
+  flex-shrink: 0;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-33.3333%);
+  }
+}
