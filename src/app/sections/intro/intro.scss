@@ -1,14 +1,41 @@
 @use "variables" as var;
 @use "mixins" as mix;
+@use "sass:map";
 
-$greeting-duration: 0.5s;
-$total-greeting-duration: $greeting-duration * 2 + 0.2s;
+$timeline: (
+  greeting-in: 0s,
+  greeting-out: 1.2s,
+  name-typing: 1.7s,
+  description: 2.9s,
+  about-fade: 3s,
+  about-slide: 3.5s
+);
+
+$durations: (
+  greeting-pop: 0.5s,
+  greeting-scale: 0.5s,
+  name-typing: 1s,
+  name-blink: 0.75s,
+  description-fade: 0.5s,
+  about-fade: 0.5s,
+  about-slide: 0.5s
+);
+
+@function timeline($key) {
+  @return map.get($timeline, $key);
+}
+
+@function duration($key) {
+  @return map.get($durations, $key);
+}
 
 :host {
   height: 100vh;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .content {
@@ -17,57 +44,29 @@ $total-greeting-duration: $greeting-duration * 2 + 0.2s;
   align-items: center;
 }
 
+// Greeting animations
 .greetings {
   display: flex;
   transform: scale(5);
-  animation: greetings-container-out 0.5s forwards;
-  animation-delay: $total-greeting-duration;
+  animation: greeting-scale-out duration(greeting-scale) ease-out forwards;
+  animation-delay: timeline(greeting-out);
 
   > span {
     display: block;
     opacity: 0;
-    animation: greetings-pop-in 0.5s forwards;
+    animation: greeting-pop-in duration(greeting-pop) ease-out forwards;
 
     &:nth-child(1) {
-      animation-delay: 0s;
+      animation-delay: timeline(greeting-in);
     }
 
     &:nth-child(2) {
-      animation-delay: 0.5s;
-    }
-  }
-
-  @keyframes greetings-container-out {
-    0% {
-      transform: scale(5);
-    }
-    50% {
-      transform: scale(1.2);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-
-  @keyframes greetings-pop-in {
-    0% {
-      transform: translateY(100%) rotateZ(-10deg);
-      opacity: 0;
-    }
-    60% {
-      transform: translateY(-20%) rotateZ(5deg);
-      opacity: 1;
-    }
-    80% {
-      transform: translateY(10%) rotateZ(-2deg);
-    }
-    100% {
-      transform: translateY(0) rotateZ(0);
-      opacity: 1;
+      animation-delay: timeline(greeting-in) + duration(greeting-pop);
     }
   }
 }
 
+// Name typing animation
 .name {
   > span {
     display: block;
@@ -81,39 +80,18 @@ $total-greeting-duration: $greeting-duration * 2 + 0.2s;
     font-family: var.$secondary-font;
     font-weight: 700;
     animation: 
-      typing 1s steps(12, end),
-      blink-caret 0.75s step-end infinite;
-    animation-fill-mode: forwards;
-    animation-delay: $total-greeting-duration;
+      name-typing duration(name-typing) steps(12, end) forwards,
+      caret-blink duration(name-blink) step-end infinite;
+    animation-delay: timeline(name-typing), timeline(name-typing);
 
     @include mix.mobile {
       font-size: 3.5rem;
     }
   }
-
-  @keyframes typing {
-    from {
-      opacity: 1;
-      width: 0;
-    }
-    to {
-      opacity: 1;
-      width: 100%;
-    }
-  }
-
-  @keyframes blink-caret {
-    from,
-    to {
-      border-color: transparent;
-    }
-    50% {
-      border-color: var.$accent-color;
-    }
-  }
 }
 
-p {
+// Description text animation
+.main-text {
   width: 90%;
   max-width: 600px;
   opacity: 0;
@@ -121,22 +99,137 @@ p {
   color: var.$secondary-font-color;
   font-size: 1.4rem;
   line-height: 1.6rem;
-  animation: fade-in-bottom 0.5s forwards;
-  animation-delay: calc(#{$total-greeting-duration} + 1.2s);
+  animation: fade-in-up duration(description-fade) ease-out forwards;
+  animation-delay: timeline(description);
 
   @include mix.mobile {
     font-size: 1.1rem;
     line-height: 1.3rem;
   }
+}
 
-  @keyframes fade-in-bottom {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
+// About section animations
+.about {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  color: var.$secondary-font-color;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fade-in-up duration(about-fade) ease-out forwards;
+  animation-delay: timeline(about-fade);
+
+  img {
+    width: 22vw;
+    min-width: 300px;
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.4rem;
+    text-align: start;
+    padding-left: var.$spacing-unit * 2;
+    max-width: 400px;
+    margin-bottom: calc(1.4rem + var.$spacing-unit * 5);
+    position: relative;
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: slide-in-right duration(about-slide) ease-out forwards;
+    animation-delay: timeline(about-slide);
+
+    &::before,
+    &::after {
+      position: absolute;
+      font-size: 1.2rem;
+      left: 0;
+      @include mix.gradient-text();
+      font-family: var.$secondary-font;
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+
+    &::before {
+      content: "<span>";
+      bottom: 100%;
     }
+
+    &::after {
+      content: "</span>";
+      top: 100%;
+    }
+  }
+}
+
+// Keyframe definitions
+@keyframes greeting-pop-in {
+  0% {
+    transform: translateY(100%) rotateZ(-10deg);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(-20%) rotateZ(5deg);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(10%) rotateZ(-2deg);
+  }
+  100% {
+    transform: translateY(0) rotateZ(0);
+    opacity: 1;
+  }
+}
+
+@keyframes greeting-scale-out {
+  0% {
+    transform: scale(5);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes name-typing {
+  0% {
+    opacity: 1;
+    width: 0;
+  }
+  100% {
+    opacity: 1;
+    width: 100%;
+  }
+}
+
+@keyframes caret-blink {
+  0%, 100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var.$accent-color;
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
