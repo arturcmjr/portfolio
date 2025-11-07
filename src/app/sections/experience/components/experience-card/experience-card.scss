@@ -1,0 +1,11 @@
+@use "variables" as var;
+
+:host > div {
+  display: block;
+  padding: var.$spacing-medium;
+  max-width: 400px;
+
+  p {
+    color: var.$secondary-font-color;
+  }
+}

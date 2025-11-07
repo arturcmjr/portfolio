@@ -1,0 +1,35 @@
+@use "variables" as var;
+@use "mixins" as mix;
+
+:host {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var.$spacing-large * 2;
+  padding: var.$spacing-large * 2;
+  margin-top: 100px;
+  max-width: 1300px;
+
+  @include mix.mobile {
+    grid-template-columns: 1fr;
+    padding: var.$spacing-medium;
+    margin-top: 50px;
+  }
+
+  h2 {
+    font-family: var.$secondary-font;
+    @include mix.gradient-text();
+    font-weight: 400;
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .experiences {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+
+    @include mix.mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+}

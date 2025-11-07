@@ -4,10 +4,11 @@ import { Header } from './layout/header/header';
 import { Intro } from './sections/intro/intro';
 import { CustomCursor } from './layout/custom-cursor/custom-cursor';
 import { TechStripe } from './sections/tech-stripe/tech-stripe';
+import { Experience } from './sections/experience/experience';
 
 @Component({
   selector: 'app-root',
-  imports: [NightSkyComponent, Header, Intro, CustomCursor, TechStripe],
+  imports: [NightSkyComponent, Header, Intro, CustomCursor, TechStripe, Experience],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

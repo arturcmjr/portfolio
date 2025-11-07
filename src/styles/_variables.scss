@@ -2,8 +2,13 @@ $primary-font-color: #ffffff;
 $secondary-font-color: #aaaaaa;
 $primary-font: 'League Spartan', sans-serif;
 $secondary-font: 'Source Code Pro', monospace;
-$spacing-unit: 0.4rem;
 $accent-color: #38ef7d;
 $grad-start: #11998e;
 $grad-end: #38ef7d;
 $background-color: #060A0D;
+
+// Deprecated: $spacing-unit — use $spacing-small instead. This variable will be removed in a future release.
+$spacing-unit: 0.4rem;
+$spacing-small: 0.4rem;
+$spacing-medium: 0.8rem;
+$spacing-large: 1.6rem;
