@@ -15,14 +15,6 @@
     margin-top: 50px;
   }
 
-  h2 {
-    font-family: var.$secondary-font;
-    @include mix.gradient-text();
-    font-weight: 400;
-    font-size: 1.8rem;
-    text-align: center;
-  }
-
   .experiences {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

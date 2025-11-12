@@ -5,10 +5,11 @@ import { Intro } from './sections/intro/intro';
 import { CustomCursor } from './layout/custom-cursor/custom-cursor';
 import { TechStripe } from './sections/tech-stripe/tech-stripe';
 import { Experience } from './sections/experience/experience';
+import { Technologies } from './sections/technologies/technologies';
 
 @Component({
   selector: 'app-root',
-  imports: [NightSkyComponent, Header, Intro, CustomCursor, TechStripe, Experience],
+  imports: [NightSkyComponent, Header, Intro, CustomCursor, TechStripe, Experience, Technologies],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
