@@ -2,7 +2,7 @@
 <app-custom-cursor />
 <div class="wrapper">
   <app-header [hidden]="!introFinished()" />
-  <app-intro />
+  <app-intro (introFinished)="onIntroFinished()"/>
   <app-tech-stripe />
   <app-experience />
   <app-technologies />

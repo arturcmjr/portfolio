@@ -13,17 +13,11 @@ import { Technologies } from './sections/technologies/technologies';
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App implements OnInit {
+export class App {
   protected readonly introFinished: WritableSignal<boolean> = signal(false);
   private document = inject(DOCUMENT);
 
-  ngOnInit() {
-    window.setTimeout(() => {
-      this.onIntroFinished();
-    }, 3000);
-  }
-
-  private onIntroFinished(): void {
+  protected onIntroFinished(): void {
     this.introFinished.set(true);
     this.document.body.style.overflow = 'auto';
   }

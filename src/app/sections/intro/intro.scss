@@ -2,33 +2,6 @@
 @use "mixins" as mix;
 @use "sass:map";
 
-$timeline: (
-  greeting-in: 0s,
-  greeting-out: 1.2s,
-  name-typing: 1.7s,
-  description: 2.9s,
-  about-fade: 3s,
-  about-slide: 3.5s
-);
-
-$durations: (
-  greeting-pop: 0.5s,
-  greeting-scale: 0.5s,
-  name-typing: 1s,
-  name-blink: 0.75s,
-  description-fade: 0.5s,
-  about-fade: 0.5s,
-  about-slide: 0.5s
-);
-
-@function timeline($key) {
-  @return map.get($timeline, $key);
-}
-
-@function duration($key) {
-  @return map.get($durations, $key);
-}
-
 :host {
   height: 100vh;
   width: 100vw;
@@ -44,46 +17,35 @@ $durations: (
   align-items: center;
 }
 
-.greetings {
-  display: flex;
-  transform: scale(5);
-  animation: greeting-scale-out duration(greeting-scale) ease-out forwards;
-  animation-delay: timeline(greeting-out);
-
-  > span {
-    display: block;
-    opacity: 0;
-    animation: greeting-pop-in duration(greeting-pop) ease-out forwards;
-
-    &:nth-child(1) {
-      animation-delay: timeline(greeting-in);
-    }
-
-    &:nth-child(2) {
-      animation-delay: timeline(greeting-in) + duration(greeting-pop);
-    }
-  }
-}
-
 .name {
-  > span {
-    display: block;
-    overflow: hidden;
-    opacity: 0;
-    border-right: 0.15em solid var.$accent-color;
-    white-space: nowrap;
-    margin: 0 auto;
-    letter-spacing: 0.15em;
-    font-size: 5.5rem;
-    font-family: var.$secondary-font;
-    font-weight: 700;
-    animation: 
-      name-typing duration(name-typing) steps(12, end) forwards,
-      caret-blink duration(name-blink) step-end infinite;
-    animation-delay: timeline(name-typing), timeline(name-typing);
+  display: block;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.15em;
+  border-right: 0.15em solid var.$accent-color;
+  font-size: 5.5rem;
+  font-family: var.$secondary-font;
+  font-weight: 700;
+  min-height: 1.2em;
+  animation: caret-blink 1s step-end infinite;
 
-    @include mix.mobile {
-      font-size: 3.5rem;
+  &:empty {
+    border-right: none;
+  }
+
+  @include mix.mobile {
+    font-size: 3.5rem;
+  }
+
+  @keyframes caret-blink {
+
+    0%,
+    100% {
+      border-color: transparent;
+    }
+
+    50% {
+      border-color: var.$accent-color;
     }
   }
 }
@@ -91,13 +53,10 @@ $durations: (
 .main-text {
   width: 90%;
   max-width: 600px;
-  opacity: 0;
   text-align: center;
   color: var.$secondary-font-color;
   font-size: 1.4rem;
   line-height: 1.6rem;
-  animation: fade-in-up duration(description-fade) ease-out forwards;
-  animation-delay: timeline(description);
 
   @include mix.mobile {
     font-size: 1.1rem;
@@ -113,10 +72,8 @@ $durations: (
   cursor: pointer;
   display: flex;
   align-items: flex-end;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fade-in-up duration(about-fade) ease-out forwards;
-  animation-delay: timeline(about-fade);
+  opacity: 1;
+  transform: translateY(0);
 
   img {
     width: 22vw;
@@ -131,10 +88,8 @@ $durations: (
     max-width: 400px;
     margin-bottom: calc(1.4rem + var.$spacing-unit * 5);
     position: relative;
-    opacity: 0;
-    transform: translateX(-50px);
-    animation: slide-in-right duration(about-slide) ease-out forwards;
-    animation-delay: timeline(about-slide);
+    opacity: 1;
+    transform: translateX(0);
 
     &::before,
     &::after {
@@ -154,77 +109,5 @@ $durations: (
       content: "</span>";
       top: 100%;
     }
-  }
-}
-
-@keyframes greeting-pop-in {
-  0% {
-    transform: translateY(100%) rotateZ(-10deg);
-    opacity: 0;
-  }
-  60% {
-    transform: translateY(-20%) rotateZ(5deg);
-    opacity: 1;
-  }
-  80% {
-    transform: translateY(10%) rotateZ(-2deg);
-  }
-  100% {
-    transform: translateY(0) rotateZ(0);
-    opacity: 1;
-  }
-}
-
-@keyframes greeting-scale-out {
-  0% {
-    transform: scale(5);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes name-typing {
-  0% {
-    opacity: 1;
-    width: 0;
-  }
-  100% {
-    opacity: 1;
-    width: 100%;
-  }
-}
-
-@keyframes caret-blink {
-  0%, 100% {
-    border-color: transparent;
-  }
-  50% {
-    border-color: var.$accent-color;
-  }
-}
-
-@keyframes fade-in-up {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slide-in-right {
-  0% {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
   }
 }
