@@ -1,1 +1,14 @@
-<img [src]="iconSrc()" width="40" height="40" [id]="tempId" />
+<div class="icon-wrapper glass" [class.flipped]="isRotated()" #iconWrapper>
+  <img [src]="iconSrc()" width="45" height="45" />
+  <div class="info">
+    <div>Angular</div>
+    <div>4 years</div>
+    <div class="stars">
+      <fa-icon [icon]="icons.faStarSolid" size="2xs"></fa-icon>
+      <fa-icon [icon]="icons.faStarSolid" size="2xs"></fa-icon>
+      <fa-icon [icon]="icons.faStarSolid" size="2xs"></fa-icon>
+      <fa-icon [icon]="icons.faStarOutline" size="2xs"></fa-icon>
+      <fa-icon [icon]="icons.faStarOutline" size="2xs"></fa-icon>
+    </div>
+  </div>
+</div>

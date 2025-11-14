@@ -12,17 +12,21 @@ gsap.registerPlugin(SplitText, TextPlugin);
   styleUrl: './intro.scss',
 })
 export class Intro implements AfterViewInit {
-  readonly introFinished = output<boolean>();
+  readonly introFinished = output<void>();
 
   ngAfterViewInit(): void {
     // TODO: wait for fonts to load
+    // TODO: remove it after testing
+    this.introFinished.emit();
+    return;
+
     const mainTl = gsap.timeline();
     mainTl.add(this.getGreetingsAnimation());
     mainTl.add(this.getNameAnimation(), '+=0.3');
     mainTl.add(this.getMainTextAnimation(), '+=0.2');
     mainTl.add(this.getPictureAnimation(), '+=0.2');
     mainTl.call(() => {
-      this.introFinished.emit(true);
+      this.introFinished.emit();
     });
   }
 
