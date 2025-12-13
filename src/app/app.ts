@@ -6,10 +6,22 @@ import { CustomCursor } from './layout/custom-cursor/custom-cursor';
 import { TechStripe } from './sections/tech-stripe/tech-stripe';
 import { Experience } from './sections/experience/experience';
 import { Technologies } from './sections/technologies/technologies';
+import { About } from './sections/about/about';
+import { ExperienceV2 } from './sections/experience-v2/experience-v2';
 
 @Component({
   selector: 'app-root',
-  imports: [NightSkyComponent, Header, Intro, CustomCursor, TechStripe, Experience, Technologies],
+  imports: [
+    NightSkyComponent,
+    Header,
+    Intro,
+    CustomCursor,
+    TechStripe,
+    Experience,
+    ExperienceV2,
+    Technologies,
+    About,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

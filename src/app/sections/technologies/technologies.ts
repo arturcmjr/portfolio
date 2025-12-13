@@ -27,7 +27,7 @@ export class Technologies implements OnInit {
       duration: 1,
       stagger: 0.2,
       scrollTrigger: {
-        markers: true,
+        // markers: true,
         trigger: techGrid,
         start: 'top 80%',
         end: 'bottom 20%',

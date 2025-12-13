@@ -1,0 +1,46 @@
+<div class="experience-container">
+  <svg #circularSvg viewBox="0 0 300 300" class="circular-svg">
+    <defs>
+      <path id="circlePath" d="M16 290.3V150c0-74 60-134 134-134s134 60 134 134v140.3" />
+    </defs>
+    <text class="circular-text">
+      <textPath class="years-path" href="#circlePath" startOffset="0%">
+        @for (yearData of years(); track $index; let yearIndex = $index) { @for (experience of
+        yearData.experiences; track $index; let experienceIndex = $index) {
+        <tspan
+          dx="30"
+          class="experience-dot"
+          [class.highlighted]="
+            visibleIndexes()?.yearIndex === yearIndex &&
+            visibleIndexes()?.experienceIndex === experienceIndex
+          "
+        >
+          •
+        </tspan>
+        }
+        <tspan dx="30" [class.highlighted]="visibleIndexes()?.yearIndex === yearIndex">
+          {{ yearData.year }}
+        </tspan>
+        }
+      </textPath>
+    </text>
+  </svg>
+
+  <!-- Target detection box -->
+  <div #targetBox class="target-box"></div>
+
+  <!-- <img src="images/earth.png" class="earth" /> -->
+
+  <!-- Display detected item -->
+  <!-- @if (visibleItem(); as item) {
+    <div class="glass content">
+      @if (item.type === 'year') {
+        <h2>Year {{ item.year }}</h2>
+      } @else if (item.type === 'experience' && item.data) {
+        <h3>{{ item.data.title }}</h3>
+        <p>{{ item.data.description }}</p>
+        <small>Year: {{ item.year }}</small>
+      }
+    </div>
+  } -->
+</div>
