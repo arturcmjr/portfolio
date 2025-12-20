@@ -5,6 +5,7 @@ import {
   ElementRef,
   viewChild,
   signal,
+  computed,
 } from '@angular/core';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -86,6 +87,12 @@ export class ExperienceV2 {
   visibleIndexes = signal<VisibleIndex | null>(null);
   svgElement = viewChild<ElementRef<SVGSVGElement>>('circularSvg');
   targetBox = viewChild<ElementRef<HTMLDivElement>>('targetBox');
+  visibleItem = computed(() => {
+    const indexes = this.visibleIndexes();
+    if (!indexes) return null;
+    const yearData = this.years()[indexes.yearIndex];
+    return yearData.experiences[indexes.experienceIndex];
+  });
 
   constructor() {
     afterNextRender(() => {

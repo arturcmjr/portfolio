@@ -8,7 +8,7 @@
         @for (yearData of years(); track $index; let yearIndex = $index) { @for (experience of
         yearData.experiences; track $index; let experienceIndex = $index) {
         <tspan
-          dx="30"
+          dx="15"
           class="experience-dot"
           [class.highlighted]="
             visibleIndexes()?.yearIndex === yearIndex &&
@@ -18,7 +18,7 @@
           •
         </tspan>
         }
-        <tspan dx="30" [class.highlighted]="visibleIndexes()?.yearIndex === yearIndex">
+        <tspan dx="15" [class.highlighted]="visibleIndexes()?.yearIndex === yearIndex">
           {{ yearData.year }}
         </tspan>
         }
@@ -32,15 +32,10 @@
   <!-- <img src="images/earth.png" class="earth" /> -->
 
   <!-- Display detected item -->
-  <!-- @if (visibleItem(); as item) {
-    <div class="glass content">
-      @if (item.type === 'year') {
-        <h2>Year {{ item.year }}</h2>
-      } @else if (item.type === 'experience' && item.data) {
-        <h3>{{ item.data.title }}</h3>
-        <p>{{ item.data.description }}</p>
-        <small>Year: {{ item.year }}</small>
-      }
-    </div>
-  } -->
+  @if (visibleItem(); as item) {
+  <div class="glass content">
+    <h3>{{ item.title }}</h3>
+    <p>{{ item.description }}</p>
+  </div>
+  }
 </div>
