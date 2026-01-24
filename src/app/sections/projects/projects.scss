@@ -1,0 +1,77 @@
+@use 'variables' as vars;
+@use 'mixins' as mixins;
+
+:host {
+  width: 800px;
+
+  .projects {
+    display: flex;
+    gap: vars.$spacing-medium;
+  }
+
+  .main-project {
+    width: 100%;
+
+    .project {
+
+      .title,
+      .description {
+        padding: vars.$spacing-medium;
+      }
+    }
+  }
+
+  .project {
+    width: 100%;
+    box-sizing: border-box;
+
+    .description,
+    .small-description {
+      color: vars.$secondary-font-color;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.other-projects {
+  display: flex;
+  flex-direction: column;
+  gap: vars.$spacing-medium;
+
+  .project {
+    flex-grow: 1;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-medium;
+    padding: vars.$spacing-medium;
+
+    .small-description {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      display: -webkit-box;
+      line-clamp: 4;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
+  }
+}
+
+@include mixins.mobile {
+  :host {
+    width: 100%;
+
+    .projects {
+      flex-direction: column;
+      padding: vars.$spacing-medium;
+    }
+
+    .other-projects .project {
+      width: 100%;
+    }
+  }
+}

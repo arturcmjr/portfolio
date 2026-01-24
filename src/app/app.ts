@@ -7,6 +7,7 @@ import { TechStripe } from './sections/tech-stripe/tech-stripe';
 import { Experience } from './sections/experience/experience';
 import { Technologies } from './sections/technologies/technologies';
 import { About } from './sections/about/about';
+import { Projects } from './sections/projects/projects';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ import { About } from './sections/about/about';
     Experience,
     Technologies,
     About,
+    Projects,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',

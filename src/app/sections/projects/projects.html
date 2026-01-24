@@ -1,0 +1,28 @@
+<h2 class="small-title">Projects</h2>
+<div class="projects">
+  <div class="main-project" appTilt>
+    <div class="glass project">
+      <div class="title">Under construction</div>
+      <img
+        src="https://cdn.prod.website-files.com/5b5729421aca332c60585f78/63f5fa23da820b87c87958be_61ba503872080311dde1ea56_long-form-landing-page-examples.png"
+        alt=""
+      />
+      <div class="description">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum iste architecto at pariatur
+        culpa atque iure, molestiae optio. Facilis molestias in nesciunt amet enim doloribus?
+      </div>
+    </div>
+  </div>
+  <div class="other-projects">
+    @for (item of [1, 2, 3]; track item) {
+      <div class="glass project" appTilt>
+        <div class="title">Project {{ item }}</div>
+        <div class="small-description">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor eligendi sed vel, facere
+          nisi atque, repudiandae ratione quos quidem sunt earum temporibus, libero dignissimos.
+          Eaque?
+        </div>
+      </div>
+    }
+  </div>
+</div>

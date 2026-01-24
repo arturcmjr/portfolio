@@ -20,7 +20,7 @@ export class Tilt {
 
   private readonly targetRotation = signal<Position>({ x: 0, y: 0 });
   private readonly currentRotation = signal<Position>({ x: 0, y: 0 });
-  private readonly rotationFactor = 17;
+  private readonly maxTilt = 12;
   
   // Static light source - top-left position
   private readonly lightSource = { x: 30, y: 20 };
@@ -67,9 +67,15 @@ export class Tilt {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
+    const normalizedX = centerX === 0 ? 0 : (x - centerX) / centerX;
+    const normalizedY = centerY === 0 ? 0 : (y - centerY) / centerY;
+
+    const clampedX = Math.max(-1, Math.min(1, normalizedX));
+    const clampedY = Math.max(-1, Math.min(1, normalizedY));
+
     this.targetRotation.set({
-      x: ((y - centerY) / this.rotationFactor) * -1,
-      y: (x - centerX) / this.rotationFactor,
+      x: clampedY * -this.maxTilt,
+      y: clampedX * this.maxTilt,
     });
 
     if (!this.requestId) {
