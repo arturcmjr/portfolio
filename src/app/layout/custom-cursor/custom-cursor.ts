@@ -53,9 +53,14 @@ export class CustomCursor implements OnInit {
   private getCursorClass(el: HTMLElement): string {
     if (!el) return '';
 
-    const cursorType = el.dataset['cursor'];
-    if (cursorType) {
-      return `cursor-${cursorType}`;
+    let current: HTMLElement | null = el;
+    while (current) {
+      const cursorType = current.dataset['cursor'];
+      if (cursorType) {
+        return `cursor-${cursorType}`;
+      }
+
+      current = current.parentElement;
     }
 
     return '';

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ExperienceCard } from './components/experience-card/experience-card';
+import { CursorType } from '@shared/directives/cursor-type';
 
 @Component({
   selector: 'app-experience',
@@ -7,4 +8,7 @@ import { ExperienceCard } from './components/experience-card/experience-card';
   templateUrl: './experience.html',
   styleUrl: './experience.scss'
 })
-export class Experience {}
+export class Experience {
+  selectedWorkIndex = signal(0);
+  selectedEducationIndex = signal(0);
+}

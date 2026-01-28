@@ -1,42 +1,26 @@
 <div>
   <h2 class="small-title">Work</h2>
   <div class="experiences">
-    <app-experience-card
-      title="Role Title"
-      description="empty"
-    />
-    <app-experience-card
-      title="Role Title"
-      description="empty"
-    />
-    <app-experience-card
-      title="Role Title"
-      description="empty"
-    />
-    <app-experience-card
-      title="Role Title"
-      description="empty"
-    />
+    @for (item of [0, 1, 2, 3]; track item) {
+      <app-experience-card
+        title="Role Title"
+        description="empty"
+        [collapsed]="selectedWorkIndex() !== item"
+        (click)="selectedWorkIndex.set(item)"
+      />
+    }
   </div>
 </div>
 <div>
   <h2 class="small-title">Education</h2>
   <div class="experiences">
-    <app-experience-card
-      title="Education Title"
-      description="empty"
-    />
-    <app-experience-card
-      title="Education Title"
-      description="empty"
-    />
-    <app-experience-card
-      title="Education Title"
-      description="empty"
-    />
-    <app-experience-card
-      title="Education Title"
-      description="empty"
-    />
+    @for (item of [0, 1, 2, 3]; track item) {
+      <app-experience-card
+        title="Education Title"
+        description="empty"
+        [collapsed]="selectedEducationIndex() !== item"
+        (click)="selectedEducationIndex.set(item)"
+      />
+    }
   </div>
 </div>

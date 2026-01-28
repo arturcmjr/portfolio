@@ -1,4 +1,4 @@
-import { Directive, ElementRef, signal, inject } from '@angular/core';
+import { Directive, ElementRef, effect, inject, input, signal } from '@angular/core';
 
 interface Position {
   x: number;
@@ -18,6 +18,7 @@ export class Tilt {
   private requestId: number | null = null;
   private overlay: HTMLElement | null = null;
 
+  readonly tiltEnabled = input<boolean>(true);
   private readonly targetRotation = signal<Position>({ x: 0, y: 0 });
   private readonly currentRotation = signal<Position>({ x: 0, y: 0 });
   private readonly maxTilt = 12;
@@ -27,6 +28,11 @@ export class Tilt {
 
   constructor() {
     this.setupElement();
+    effect(() => {
+      if (!this.tiltEnabled()) {
+        this.resetTilt(true);
+      }
+    });
   }
 
   private setupElement(): void {
@@ -55,12 +61,14 @@ export class Tilt {
   }
 
   onMouseEnter(): void {
+    if (!this.tiltEnabled()) return;
     if (this.overlay) {
       this.overlay.style.opacity = '1';
     }
   }
 
   onMouseMove(event: MouseEvent): void {
+    if (!this.tiltEnabled()) return;
     const rect = this.el.nativeElement.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
@@ -158,13 +166,23 @@ export class Tilt {
   }
 
   onMouseLeave(): void {
+    if (!this.tiltEnabled()) {
+      this.resetTilt(true);
+      return;
+    }
+    this.resetTilt();
+  }
+
+  private resetTilt(instant = false): void {
     if (this.requestId) {
       cancelAnimationFrame(this.requestId);
       this.requestId = null;
     }
 
     const element = this.el.nativeElement;
-    element.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.320, 1)';
+    element.style.transition = instant
+      ? ''
+      : 'transform 0.6s cubic-bezier(0.23, 1, 0.320, 1)';
     element.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
 
     if (this.overlay) {
@@ -174,8 +192,10 @@ export class Tilt {
     this.currentRotation.set({ x: 0, y: 0 });
     this.updateStaticLighting(0, 0);
 
-    setTimeout(() => {
-      element.style.transition = '';
-    }, 600);
+    if (!instant) {
+      setTimeout(() => {
+        element.style.transition = '';
+      }, 600);
+    }
   }
 }

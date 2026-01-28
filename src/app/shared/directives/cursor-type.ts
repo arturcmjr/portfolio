@@ -1,6 +1,6 @@
 import { Directive, input } from '@angular/core';
 
-export type CursorTypes = 'pointer'; // TODO: check adding more types like 'text' is needed;
+export type CursorTypes = 'pointer' | 'default'; // TODO: check adding more types like 'text' is needed;
 
 @Directive({
   selector: '[cursorType]',

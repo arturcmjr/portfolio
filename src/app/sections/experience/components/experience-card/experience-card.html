@@ -1,8 +1,18 @@
-<div class="glass" appTilt>
+<div
+  class="glass"
+  #card
+  appTilt
+  [class.collapsed]="collapsed()"
+  [cursorType]="collapsed() ? 'pointer' : 'default'"
+>
   <h3>{{ title() }}</h3>
   <!-- <p>{{ description() }}</p> -->
   <p>
-    Developed single and multiplayer Unity games in C#, building gameplay systems, AI bots, and interfaces. Also created visuals and contributed to a PHP/MySQL REST API for a gaming social platform.
+    Developed single and multiplayer Unity games in C#, building gameplay systems, AI bots, and
+    interfaces. Also created visuals and contributed to a PHP/MySQL REST API for a gaming social
+    platform.
   </p>
-  <p><!-- Handled a bit of everything, from automating daily tasks with VBA and SQL to creating visuals for fundraising campaigns. Also developed a Laravel and Vue system to support hot meal distribution for Venezuelan refugees. --></p>
+  <p>
+    <!-- Handled a bit of everything, from automating daily tasks with VBA and SQL to creating visuals for fundraising campaigns. Also developed a Laravel and Vue system to support hot meal distribution for Venezuelan refugees. -->
+  </p>
 </div>
