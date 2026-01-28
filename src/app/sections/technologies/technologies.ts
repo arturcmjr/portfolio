@@ -2,9 +2,6 @@ import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { ObserveVisibilityDirective } from '@shared/directives/observe-visibility';
 import { TechIcon } from './components/tech-icon/tech-icon';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-technologies',

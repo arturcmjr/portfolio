@@ -8,6 +8,10 @@ import { Experience } from './sections/experience/experience';
 import { Technologies } from './sections/technologies/technologies';
 import { About } from './sections/about/about';
 import { Projects } from './sections/projects/projects';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-root',
