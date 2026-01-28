@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { SectionHeader } from 'app/layout/section-header/section-header';
 
 interface TimelineItem {
   date: string;
@@ -10,6 +11,7 @@ interface TimelineItem {
   selector: 'app-about',
   templateUrl: './about.html',
   styleUrl: './about.scss',
+  imports: [SectionHeader],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class About {

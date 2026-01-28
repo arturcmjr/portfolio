@@ -28,14 +28,6 @@ body,
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.small-title {
-  font-family: var.$secondary-font;
-  @include mix.gradient-text();
-  font-weight: 400;
-  font-size: 1.8rem;
-  text-align: center;
-}
-
 ::-webkit-scrollbar {
   width: 8px;
 }

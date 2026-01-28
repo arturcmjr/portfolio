@@ -2,10 +2,11 @@ import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { ObserveVisibilityDirective } from '@shared/directives/observe-visibility';
 import { TechIcon } from './components/tech-icon/tech-icon';
 import { gsap } from 'gsap';
+import { SectionHeader } from 'app/layout/section-header/section-header';
 
 @Component({
   selector: 'app-technologies',
-  imports: [ObserveVisibilityDirective, TechIcon],
+  imports: [ObserveVisibilityDirective, TechIcon, SectionHeader],
   templateUrl: './technologies.html',
   styleUrl: './technologies.scss',
 })

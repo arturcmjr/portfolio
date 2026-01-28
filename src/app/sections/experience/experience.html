@@ -1,5 +1,5 @@
 <div>
-  <h2 class="small-title">Work</h2>
+  <app-section-header title="Work Experience"/>
   <div class="experiences" #workExperiencesList>
     @for (item of [0, 1, 2, 3]; track item) {
       <app-experience-card
@@ -12,7 +12,7 @@
   </div>
 </div>
 <div>
-  <h2 class="small-title">Education</h2>
+  <app-section-header title="Education"/>
   <div class="experiences" #educationExperiences>
     @for (item of [0, 1, 2, 3]; track item) {
       <app-experience-card
