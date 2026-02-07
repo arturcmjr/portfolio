@@ -24,6 +24,7 @@ import { CommonModule } from '@angular/common';
 })
 export class CustomCursor implements OnInit {
   private renderer = inject(Renderer2);
+  private hasMouse = signal(false);
 
   x = signal(0);
   y = signal(0);
@@ -31,10 +32,18 @@ export class CustomCursor implements OnInit {
   isClicked = signal(false);
 
   ngOnInit(): void {
+    const hasFinePointer = window.matchMedia?.('(any-pointer: fine)')?.matches ?? false;
+    const hasHover = window.matchMedia?.('(any-hover: hover)')?.matches ?? false;
+    this.hasMouse.set(hasFinePointer && hasHover);
+
+    if (!this.hasMouse()) return;
+
     this.renderer.setStyle(document.body, 'cursor', 'none');
   }
 
   onMouseMove(event: MouseEvent): void {
+    if (!this.hasMouse()) return;
+
     this.x.set(event.clientX);
     this.y.set(event.clientY);
 
@@ -43,10 +52,14 @@ export class CustomCursor implements OnInit {
   }
 
   onMouseDown(): void {
+    if (!this.hasMouse()) return;
+
     this.isClicked.set(true);
   }
 
   onMouseUp(): void {
+    if (!this.hasMouse()) return;
+
     this.isClicked.set(false);
   }
 
@@ -67,10 +80,14 @@ export class CustomCursor implements OnInit {
   }
 
   onMouseLeave(): void {
+    if (!this.hasMouse()) return;
+
     this.cursorClass.set('hidden');
   }
 
   onMouseEnter(): void {
+    if (!this.hasMouse()) return;
+
     this.cursorClass.set('');
   }
 }

@@ -4,10 +4,12 @@ import {
   inject,
   DOCUMENT,
   OnInit,
-  OnDestroy,
+  DestroyRef,
   ChangeDetectionStrategy,
   input,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { fromEvent } from 'rxjs';
 import { CursorType } from '../../shared/directives/cursor-type';
 
 @Component({
@@ -21,26 +23,23 @@ import { CursorType } from '../../shared/directives/cursor-type';
     '[class.hidden]': 'hidden() || hiddenInput()',
   },
 })
-export class Header implements OnInit, OnDestroy {
+export class Header implements OnInit {
   hiddenInput = input<boolean>(false, { alias: 'hidden' });
 
   private readonly document = inject(DOCUMENT);
+  private readonly destroyRef = inject(DestroyRef);
   protected readonly hidden = signal(false);
 
   private lastScroll = 0;
-  private scrollListener = this.onScroll.bind(this);
 
   ngOnInit() {
-    this.document.body?.addEventListener('scroll', this.scrollListener, { passive: true });
-  }
-
-  ngOnDestroy() {
-    this.document.body?.removeEventListener('scroll', this.scrollListener);
+    fromEvent(this.document, 'scroll', { passive: true, capture: true })
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => this.onScroll());
   }
 
   private onScroll() {
-    const currentScroll =
-      this.document.documentElement.scrollTop || this.document.body.scrollTop || 0;
+    const currentScroll = this.document.documentElement.scrollTop || 0;
 
     if (currentScroll > this.lastScroll) {
       this.hidden.set(true);
