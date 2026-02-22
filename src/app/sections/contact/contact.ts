@@ -57,8 +57,10 @@ export class Contact implements AfterViewInit, OnDestroy {
 
     this.scrollTrigger = ScrollTrigger.create({
       trigger: triggerElement,
-      start: 'top bottom',
+      start: 'top 70%',
       end: 'bottom top',
+      markers: true,
+      
       onEnter: () => this.flipToIconsContainer(),
       onEnterBack: () => this.flipToIconsContainer(),
       onLeave: () => this.flipToDesktopContainer(),
