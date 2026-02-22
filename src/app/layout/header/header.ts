@@ -11,6 +11,7 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { fromEvent } from 'rxjs';
 import { CursorType } from '../../shared/directives/cursor-type';
+import { gsap } from 'gsap';
 
 @Component({
   selector: 'app-header',
@@ -48,5 +49,17 @@ export class Header implements OnInit {
     }
 
     this.lastScroll = currentScroll <= 0 ? 0 : currentScroll;
+  }
+
+  protected scrollToSection(sectionId: string) {
+    // do scroll to section with id using gsap
+    const target = this.document.getElementById(sectionId);
+    if (target) {
+      gsap.to(window, {
+        scrollTo: { y: target, offsetY: 70 },
+        duration: 1,
+        ease: 'power2.out',
+      });
+    }
   }
 }

@@ -11,10 +11,12 @@ import { Projects } from './sections/projects/projects';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Flip } from 'gsap/Flip';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { Contact } from './sections/contact/contact';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
+gsap.registerPlugin(ScrollToPlugin) 
 
 @Component({
   selector: 'app-root',
