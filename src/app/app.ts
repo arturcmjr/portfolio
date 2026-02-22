@@ -11,7 +11,7 @@ import { Projects } from './sections/projects/projects';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Flip } from 'gsap/Flip';
-import { Contact } from './layout/contact/contact';
+import { Contact } from './sections/contact/contact';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);

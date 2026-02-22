@@ -2,17 +2,21 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  inject,
   OnDestroy,
   signal,
   viewChild,
-  viewChildren,
 } from '@angular/core';
-import { SectionHeader } from '../section-header/section-header';
 import { CursorType } from '@shared/directives/cursor-type';
 import { ContactIcon } from './components/contact-icon/contact-icon';
 import { Flip } from 'gsap/Flip';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { gsap } from 'gsap';
+import { isMobileDevice } from '@shared/utils/utils';
+import { SectionHeader } from 'app/layout/section-header/section-header';
+enum Container {
+  Icons,
+  Desktop,
+}
 
 @Component({
   selector: 'app-contact',
@@ -21,17 +25,28 @@ import { gsap } from 'gsap';
   styleUrl: './contact.scss',
 })
 export class Contact implements AfterViewInit, OnDestroy {
-  icons = viewChildren(ContactIcon);
+  private readonly elementRef = inject(ElementRef<HTMLElement>);
+
   iconsContainer = viewChild<ElementRef<HTMLElement>>('iconsContainer');
   desktopContainer = viewChild<ElementRef<HTMLElement>>('desktopContainer');
 
   private scrollTrigger: ScrollTrigger | null = null;
   private currentFlipAnimation: gsap.core.Timeline | null = null;
-  private inIconsContainer = false;
 
-  protected readonly showLabel = signal(false);
+  protected readonly showLabel = signal(true);
+
+  private get iconElements(): HTMLElement[] {
+    const icons = this.elementRef.nativeElement.querySelectorAll(
+      'app-contact-icon',
+    ) as NodeListOf<HTMLElement>;
+    return Array.from(icons);
+  }
 
   ngAfterViewInit(): void {
+    if (isMobileDevice()) return;
+
+    this.flipToDesktopContainer();
+
     const triggerElement = this.iconsContainer()?.nativeElement;
     if (!triggerElement) {
       return;
@@ -57,36 +72,23 @@ export class Contact implements AfterViewInit, OnDestroy {
 
   private flipToDesktopContainer(): void {
     this.showLabel.set(false);
-    window.setTimeout(() => this.flipIcons('icons', 'desktop'));
+    window.setTimeout(() => this.flipIcons(Container.Desktop));
   }
 
   private flipToIconsContainer(): void {
     this.showLabel.set(true);
-    window.setTimeout(() => this.flipIcons('desktop', 'icons'));
+    window.setTimeout(() => this.flipIcons(Container.Icons));
   }
 
-  private flipIcons(from: 'desktop' | 'icons', to: 'desktop' | 'icons'): void {
+  private flipIcons(to: Container): void {
     const desktopContainer = this.desktopContainer()?.nativeElement;
     const iconsContainer = this.iconsContainer()?.nativeElement;
-    if (!desktopContainer || !iconsContainer) {
-      return;
-    }
+    if (!desktopContainer || !iconsContainer) return;
 
-    const movingToIcons = to === 'icons';
-    if (this.inIconsContainer === movingToIcons) {
-      return;
-    }
+    const targetContainer = to === Container.Desktop ? desktopContainer : iconsContainer;
 
-    const sourceContainer = from === 'desktop' ? desktopContainer : iconsContainer;
-    const targetContainer = to === 'desktop' ? desktopContainer : iconsContainer;
-    const sourceIsFixed = getComputedStyle(sourceContainer).position === 'fixed';
-    const targetIsFixed = getComputedStyle(targetContainer).position === 'fixed';
-    const hasFixedContainer = sourceIsFixed || targetIsFixed;
-
-    const icons = Array.from(sourceContainer.querySelectorAll<HTMLElement>('app-contact-icon'));
-    if (icons.length === 0) {
-      return;
-    }
+    const icons = this.iconElements;
+    if (icons.length === 0) return;
 
     const state = Flip.getState(icons, { simple: true });
     targetContainer.append(...icons);
@@ -94,7 +96,7 @@ export class Contact implements AfterViewInit, OnDestroy {
     this.currentFlipAnimation?.kill();
     this.currentFlipAnimation = Flip.from(state, {
       targets: icons,
-      absolute: !hasFixedContainer,
+      absolute: false,
       nested: true,
       prune: true,
       simple: true,
@@ -106,7 +108,5 @@ export class Contact implements AfterViewInit, OnDestroy {
         this.currentFlipAnimation = null;
       },
     });
-
-    this.inIconsContainer = movingToIcons;
   }
 }
