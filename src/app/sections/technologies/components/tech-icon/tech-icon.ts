@@ -29,7 +29,7 @@ export class TechIcon {
   private readonly iconWrapper = viewChild<ElementRef<HTMLDivElement>>('iconWrapper');
 
   readonly iconName = input<string>();
-  readonly iconSrc = computed(() => `icons/${this.iconName()}.svg`);
+  readonly iconSrc = computed(() => `tech-icons/${this.iconName()}.svg`);
   private currentAnimation: gsap.core.Tween | null = null;
 
   protected readonly isRotated: WritableSignal<boolean> = signal(false);

@@ -28,6 +28,11 @@ body,
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+p.secondary {
+  color: var.$secondary-font-color;
+  font-style: italic;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }

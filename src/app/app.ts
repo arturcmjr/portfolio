@@ -1,4 +1,4 @@
-import { Component, DOCUMENT, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, DOCUMENT, inject, signal, WritableSignal } from '@angular/core';
 import { NightSkyComponent } from './layout/night-sky/night-sky';
 import { Header } from './layout/header/header';
 import { Intro } from './sections/intro/intro';
@@ -10,8 +10,11 @@ import { About } from './sections/about/about';
 import { Projects } from './sections/projects/projects';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Flip } from 'gsap/Flip';
+import { Contact } from './layout/contact/contact';
 
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(Flip);
 
 @Component({
   selector: 'app-root',
@@ -25,6 +28,7 @@ gsap.registerPlugin(ScrollTrigger);
     Technologies,
     About,
     Projects,
+    Contact,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',

@@ -1,0 +1,22 @@
+@use "variables" as vars;
+
+:host {
+  margin-bottom: 20vh;
+}
+
+.desktop-container {
+  position: fixed;
+  bottom: vars.$spacing-medium;
+  left: vars.$spacing-medium;
+  display: flex;
+  gap: vars.$spacing-small;
+}
+
+.icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: vars.$spacing-small;
+  margin: vars.$spacing-medium 0;
+}

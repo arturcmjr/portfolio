@@ -1,0 +1,11 @@
+<span
+  class="icon"
+  [style.width]="size()"
+  [style.height]="size()"
+  [style.maskImage]="maskUrl()"
+  [style.webkitMaskImage]="maskUrl()"
+  aria-hidden="true"
+></span>
+<span class="label" [class.hidden]="!showLabel()">
+  {{ label() }}
+</span>
