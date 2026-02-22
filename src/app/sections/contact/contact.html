@@ -1,0 +1,31 @@
+<app-section-header title="Contact" />
+<p class="secondary">Email is the fastest way to reach me.</p>
+
+<div class="icons" #iconsContainer>
+  <app-contact-icon
+    src="icons/mail.svg"
+    cursorType="pointer"
+    label="arturcmjr@gmail.com"
+    [desktopView]="desktopView()"
+  />
+  <app-contact-icon
+    src="icons/linkedin.svg"
+    cursorType="pointer"
+    label="linkedin.com/in/arturcmjr"
+    [desktopView]="desktopView()"
+  />
+  <app-contact-icon
+    src="icons/github.svg"
+    cursorType="pointer"
+    label="github.com/arturcmjr"
+    [desktopView]="desktopView()"
+  />
+  <app-contact-icon
+    src="icons/whatsapp.svg"
+    cursorType="pointer"
+    label="wa.me/1234567890"
+    [desktopView]="desktopView()"
+  />
+</div>
+
+<div class="desktop-container" #desktopContainer [class.hidden]="hideIcons()"></div>

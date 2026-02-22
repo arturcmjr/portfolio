@@ -1,0 +1,49 @@
+@use "variables" as vars;
+
+:host {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: vars.$primary-font-color;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+
+  &.desktop-view {
+    background-color: vars.$secondary-font-color;
+  }
+}
+
+.label {
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: vars.$spacing-small;
+  transition: transform 0.3s ease, color 0.3s ease;
+
+  &.hidden {
+    max-width: 0;
+    margin-left: 0;
+  }
+}
+
+:host(:hover) {
+  .icon {
+    background-color: vars.$accent-color;
+    transform: rotate(10deg) scale(1.1);
+  }
+
+  .label {
+    color: vars.$accent-color;
+    transform: rotate(-2deg) scale(1.05);
+  }
+}
