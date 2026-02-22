@@ -4,8 +4,9 @@
   [style.height]="size()"
   [style.maskImage]="maskUrl()"
   [style.webkitMaskImage]="maskUrl()"
+  [class.desktop-view]="desktopView()"
   aria-hidden="true"
 ></span>
-<span class="label" [class.hidden]="!showLabel()">
+<span class="label" [class.hidden]="desktopView()">
   {{ label() }}
 </span>

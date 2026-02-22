@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   inject,
+  input,
   OnDestroy,
   signal,
   viewChild,
@@ -27,13 +28,15 @@ enum Container {
 export class Contact implements AfterViewInit, OnDestroy {
   private readonly elementRef = inject(ElementRef<HTMLElement>);
 
-  iconsContainer = viewChild<ElementRef<HTMLElement>>('iconsContainer');
-  desktopContainer = viewChild<ElementRef<HTMLElement>>('desktopContainer');
+  readonly hideIcons = input<boolean>(false);
+
+  private readonly iconsContainer = viewChild<ElementRef<HTMLElement>>('iconsContainer');
+  private readonly desktopContainer = viewChild<ElementRef<HTMLElement>>('desktopContainer');
 
   private scrollTrigger: ScrollTrigger | null = null;
   private currentFlipAnimation: gsap.core.Timeline | null = null;
 
-  protected readonly showLabel = signal(true);
+  protected readonly desktopView = signal(false);
 
   private get iconElements(): HTMLElement[] {
     const icons = this.elementRef.nativeElement.querySelectorAll(
@@ -71,12 +74,12 @@ export class Contact implements AfterViewInit, OnDestroy {
   }
 
   private flipToDesktopContainer(): void {
-    this.showLabel.set(false);
+    this.desktopView.set(true);
     window.setTimeout(() => this.flipIcons(Container.Desktop));
   }
 
   private flipToIconsContainer(): void {
-    this.showLabel.set(true);
+    this.desktopView.set(false);
     window.setTimeout(() => this.flipIcons(Container.Icons));
   }
 

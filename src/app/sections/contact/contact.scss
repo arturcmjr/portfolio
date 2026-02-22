@@ -10,6 +10,13 @@
   left: vars.$spacing-medium;
   display: flex;
   gap: vars.$spacing-small;
+  transition: opacity 0.5s ease, bottom 0.5s ease;
+
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+    bottom: -50px;
+  }
 }
 
 .icons {

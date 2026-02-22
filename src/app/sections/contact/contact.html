@@ -4,32 +4,28 @@
 <div class="icons" #iconsContainer>
   <app-contact-icon
     src="icons/mail.svg"
-    size="30px"
     cursorType="pointer"
     label="arturcmjr@gmail.com"
-    [showLabel]="showLabel()"
+    [desktopView]="desktopView()"
   />
   <app-contact-icon
     src="icons/linkedin.svg"
-    size="30px"
     cursorType="pointer"
     label="linkedin.com/in/arturcmjr"
-    [showLabel]="showLabel()"
+    [desktopView]="desktopView()"
   />
   <app-contact-icon
     src="icons/github.svg"
-    size="30px"
     cursorType="pointer"
     label="github.com/arturcmjr"
-    [showLabel]="showLabel()"
+    [desktopView]="desktopView()"
   />
   <app-contact-icon
     src="icons/whatsapp.svg"
-    size="30px"
     cursorType="pointer"
     label="wa.me/1234567890"
-    [showLabel]="showLabel()"
+    [desktopView]="desktopView()"
   />
 </div>
 
-<div class="desktop-container" #desktopContainer></div>
+<div class="desktop-container" #desktopContainer [class.hidden]="hideIcons()"></div>

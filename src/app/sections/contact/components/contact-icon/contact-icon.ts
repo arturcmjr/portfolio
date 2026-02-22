@@ -9,7 +9,7 @@ import { Component, computed, input } from '@angular/core';
 export class ContactIcon {
   label = input.required<string>();
   src = input.required<string>();
-  showLabel = input<boolean>(false);
-  size = input<string>('24px');
+  desktopView = input<boolean>(false);
+  size = computed(() => (this.desktopView() ? '25px' : '30px'));
   maskUrl = computed(() => `url('${this.src()}')`);
 }

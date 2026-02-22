@@ -17,11 +17,10 @@
   -webkit-mask-position: center;
   -webkit-mask-size: contain;
   transition: transform 0.3s ease, background-color 0.3s ease;
-}
 
-:host(:hover) .icon {
-  background-color: vars.$accent-color;
-  transform: rotate(10deg) scale(1.1);
+  &.desktop-view {
+    background-color: vars.$secondary-font-color;
+  }
 }
 
 .label {
@@ -29,9 +28,22 @@
   overflow: hidden;
   white-space: nowrap;
   margin-left: vars.$spacing-small;
+  transition: transform 0.3s ease, color 0.3s ease;
 
   &.hidden {
     max-width: 0;
     margin-left: 0;
+  }
+}
+
+:host(:hover) {
+  .icon {
+    background-color: vars.$accent-color;
+    transform: rotate(10deg) scale(1.1);
+  }
+
+  .label {
+    color: vars.$accent-color;
+    transform: rotate(-2deg) scale(1.05);
   }
 }
