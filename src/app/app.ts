@@ -13,10 +13,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Flip } from 'gsap/Flip';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { Contact } from './sections/contact/contact';
+import { Sidebar } from './layout/sidebar/sidebar';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
-gsap.registerPlugin(ScrollToPlugin) 
+gsap.registerPlugin(ScrollToPlugin);
 
 @Component({
   selector: 'app-root',
@@ -31,6 +32,7 @@ gsap.registerPlugin(ScrollToPlugin)
     About,
     Projects,
     Contact,
+    Sidebar,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',

@@ -2,6 +2,7 @@
 <app-custom-cursor />
 <div class="wrapper">
   <app-header [hidden]="!introFinished()" />
+  <app-sidebar />
   <app-intro (introFinished)="onIntroFinished()" />
   <app-tech-stripe />
   <div class="about">
