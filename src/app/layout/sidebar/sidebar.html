@@ -1,5 +1,16 @@
-<button type="button" aria-label="Toggle sidebar" [class.open]="visible()" (click)="toggle()">
-  <span></span>
-  <span></span>
-  <span></span>
-</button>
+<div class="button-container">
+  <button class="menu-button" [class.open]="visible()" (click)="toggle()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</div>
+
+<div class="sidebar" [class.open]="visible()">
+  <!-- <nav>
+    <a href="#about" (click)="toggle()">About</a>
+    <a href="#experience" (click)="toggle()">Experience</a>
+    <a href="#projects" (click)="toggle()">Projects</a>
+    <a href="#contact" (click)="toggle()">Contact</a>
+  </nav> -->
+</div>

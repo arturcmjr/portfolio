@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, signal } from '@angular/core';
+import { Component, DOCUMENT, inject, signal } from '@angular/core';
 import { gsap } from 'gsap/gsap-core';
 
 @Component({
@@ -9,27 +9,25 @@ import { gsap } from 'gsap/gsap-core';
 })
 export class Sidebar {
   protected readonly visible = signal(false);
-  private readonly elementRef = inject(ElementRef);
+  private readonly document = inject(DOCUMENT);
+  private previousBodyOverflow = '';
 
   protected toggle(): void {
-    console.log('Toggling sidebar visibility');
     this.visible.update((v) => !v);
+    const wrapper = this.document.querySelector('#appWrapper');
+    const body = this.document.body;
+
+    if (!(wrapper instanceof HTMLElement)) {
+      return;
+    }
+
     if (this.visible()) {
-      gsap.to(this.elementRef.nativeElement, {
-        height: '100%',
-        width: '80%',
-        duration: 0.15,
-        right: 0,
-        top: 0,
-      });
+      this.previousBodyOverflow = body.style.overflow;
+      body.style.overflow = 'hidden';
+      gsap.to(wrapper, { right: '80%', duration: 0.5, ease: 'power2.inOut' });
     } else {
-      gsap.to(this.elementRef.nativeElement, {
-        height: '50px',
-        width: '50px',
-        right: '1rem',
-        top: '1rem',
-        duration: 0.15,
-      });
+      body.style.overflow = this.previousBodyOverflow;
+      gsap.to(wrapper, { right: '0%', duration: 0.5, ease: 'power2.inOut' });
     }
   }
 }

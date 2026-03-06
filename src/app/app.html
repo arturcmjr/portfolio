@@ -1,6 +1,6 @@
 <app-night-sky [starCount]="80" />
 <app-custom-cursor />
-<div class="wrapper">
+<div id="appWrapper" class="wrapper">
   <app-header [hidden]="!introFinished()" />
   <app-sidebar />
   <app-intro (introFinished)="onIntroFinished()" />
