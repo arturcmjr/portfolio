@@ -6,11 +6,20 @@
   </button>
 </div>
 
-<div class="sidebar" [class.open]="visible()">
-  <!-- <nav>
-    <a href="#about" (click)="toggle()">About</a>
-    <a href="#experience" (click)="toggle()">Experience</a>
-    <a href="#projects" (click)="toggle()">Projects</a>
-    <a href="#contact" (click)="toggle()">Contact</a>
-  </nav> -->
+<div class="overlay" [class.open]="visible()"></div>
+<div class="sidebar">
+  <div class="navigation">
+    <button cursorType="pointer" #linkButton (click)="scrollToSection('about-section')">
+      about
+    </button>
+    <button cursorType="pointer" #linkButton (click)="scrollToSection('work-section')">
+      experience
+    </button>
+    <button cursorType="pointer" #linkButton (click)="scrollToSection('projects-section')">
+      projects
+    </button>
+    <button cursorType="pointer" #linkButton (click)="scrollToSection('contact-section')">
+      contact
+    </button>
+  </div>
 </div>
