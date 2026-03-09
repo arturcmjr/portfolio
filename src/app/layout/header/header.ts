@@ -1,17 +1,17 @@
 import {
-  Component,
-  signal,
-  inject,
-  DOCUMENT,
-  OnInit,
-  DestroyRef,
   ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  DOCUMENT,
+  inject,
   input,
+  OnInit,
+  signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { scrollToSection } from '@shared/utils/scroll-to-section';
 import { fromEvent } from 'rxjs';
-import { CursorType } from '../../shared/directives/cursor-type';
-import { gsap } from 'gsap';
+import { CursorType } from '@shared/directives/cursor-type';
 
 @Component({
   selector: 'app-header',
@@ -51,15 +51,5 @@ export class Header implements OnInit {
     this.lastScroll = currentScroll <= 0 ? 0 : currentScroll;
   }
 
-  protected scrollToSection(sectionId: string) {
-    // do scroll to section with id using gsap
-    const target = this.document.getElementById(sectionId);
-    if (target) {
-      gsap.to(window, {
-        scrollTo: { y: target, offsetY: 70 },
-        duration: 1,
-        ease: 'power2.out',
-      });
-    }
-  }
+  protected scrollToSection = scrollToSection;
 }
