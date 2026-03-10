@@ -1,5 +1,6 @@
 <app-section-header title="About Me" id="about-section" />
 <div class="text" #textContainer>
-  <p>{{ 'about.content' | translate }}</p>
-  <!-- TODO: check for gsap animation -->
+  @for(paragraph of paragraphs(); track paragraph) {
+    <p>{{ paragraph }}</p>
+  }
 </div>

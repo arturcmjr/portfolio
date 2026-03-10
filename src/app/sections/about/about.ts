@@ -4,17 +4,14 @@ import {
   AfterViewInit,
   viewChild,
   ElementRef,
+  inject,
+  signal,
 } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SectionHeader } from 'app/layout/section-header/section-header';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
-
-interface TimelineItem {
-  date: string;
-  title: string;
-  description: string;
-}
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-about',
@@ -24,13 +21,26 @@ interface TimelineItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class About implements AfterViewInit {
+  private readonly translate = inject(TranslateService);
   private readonly textContainer = viewChild<ElementRef<HTMLElement>>('textContainer');
 
-  ngAfterViewInit(): void { // TODO: improve animation, it does not look good
+  protected paragraphs = signal<string[]>([]);
+
+  ngAfterViewInit(): void {
+    this.translate
+      .get('about.content')
+      .pipe(take(1))
+      .subscribe((content: string) => {
+        this.paragraphs.set(content.split('\n'));
+        setTimeout(() => this.initAnimation(), 0);
+      });
+  }
+
+  private initAnimation(): void {
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: this.textContainer()?.nativeElement,
-        start: 'top 80%',
+        start: 'top 100%',
         end: 'bottom 20%',
         toggleActions: 'play none none reverse',
       },
