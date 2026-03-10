@@ -12,10 +12,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { scrollToSection } from '@shared/utils/scroll-to-section';
 import { fromEvent } from 'rxjs';
 import { CursorType } from '@shared/directives/cursor-type';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
-  imports: [CursorType],
+  imports: [CursorType, TranslateModule],
   templateUrl: './header.html',
   styleUrl: './header.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

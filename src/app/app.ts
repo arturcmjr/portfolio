@@ -14,6 +14,7 @@ import { Flip } from 'gsap/Flip';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { Contact } from './sections/contact/contact';
 import { Sidebar } from './layout/sidebar/sidebar';
+import { TranslateService } from '@ngx-translate/core';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
@@ -38,8 +39,15 @@ gsap.registerPlugin(ScrollToPlugin);
   styleUrl: './app.scss',
 })
 export class App {
+  private readonly translate = inject(TranslateService);
   protected readonly introFinished: WritableSignal<boolean> = signal(false);
   private document = inject(DOCUMENT);
+
+  constructor() {
+    this.translate.addLangs(['pt-BR', 'en']);
+    this.translate.setFallbackLang('en');
+    this.translate.use('pt-BR');
+  }
 
   protected onIntroFinished(): void {
     this.introFinished.set(true);

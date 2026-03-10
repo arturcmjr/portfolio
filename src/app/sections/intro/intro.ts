@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, output } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { TextPlugin } from 'gsap/TextPlugin';
@@ -7,7 +8,7 @@ gsap.registerPlugin(SplitText, TextPlugin);
 
 @Component({
   selector: 'app-intro',
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './intro.html',
   styleUrl: './intro.scss',
 })
@@ -20,14 +21,16 @@ export class Intro implements AfterViewInit {
     this.introFinished.emit();
     return;
 
-    const mainTl = gsap.timeline();
-    mainTl.add(this.getGreetingsAnimation());
-    mainTl.add(this.getNameAnimation(), '+=0.3');
-    mainTl.add(this.getMainTextAnimation(), '+=0.2');
-    mainTl.add(this.getPictureAnimation(), '+=0.2');
-    mainTl.call(() => {
-      this.introFinished.emit();
-    });
+    window.setTimeout(() => {
+      const mainTl = gsap.timeline();
+      mainTl.add(this.getGreetingsAnimation());
+      mainTl.add(this.getNameAnimation(), '+=0.3');
+      mainTl.add(this.getMainTextAnimation(), '+=0.2');
+      mainTl.add(this.getPictureAnimation(), '+=0.2');
+      mainTl.call(() => {
+        this.introFinished.emit();
+      });
+    }, 1000);
   }
 
   private getGreetingsAnimation() {

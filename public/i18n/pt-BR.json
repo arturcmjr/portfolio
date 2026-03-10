@@ -1,0 +1,18 @@
+{
+  "header": {
+    "about": "Sobre",
+    "experience": "Experiência",
+    "projects": "Projetos",
+    "contact": "Contato",
+    "resume": "Currículo"
+  },
+  "intro": {
+    "greeting": "Olá, meu nome é",
+    "name": "Artur",
+    "description": "Sou um desenvolvedor de software full-stack na Autotrac, com experiência em todas as camadas do desenvolvimento. Vivo próximo a Brasília, Brasil. Estou sempre aberto para conectar e conversar sobre tecnologia ou novas ideias."
+  },
+  "about": {
+    "title": "Sobre mim",
+    "content": "Tenho mais de 8 anos de experiência desenvolvendo software, sendo que nos últimos 5 anos estive focado em desenvolvimento web, especialmente em ambientes SaaS. Trabalho principalmente com Angular e .NET, e gosto de transitar entre front-end e back-end quando o projeto exige.\nDito isso, o front-end é onde sou mais forte — é onde consigo combinar engenharia com experiência do usuário e dar vida às ideias.\nBusco principalmente oportunidades em front-end, mas estou sempre aberto a qualquer desafio que me permita construir algo útil e bem feito."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "header": {
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact",
+    "resume": "Resume"
+  },
+  "intro": {
+    "greeting": "Hello, my name is",
+    "name": "Artur",
+    "description": "I am a full-stack software developer at Autotrac, with experience in all layers of development. I live near Brasília, Brazil. I am always open to connecting and discussing technology or new ideas."
+  },
+  "about": {
+    "title": "About Me",
+    "content": "I have over 8 years of experience developing software, with the last 5 years focused on web development, especially in SaaS environments. I mainly work with Angular and .NET, and I enjoy moving between front-end and back-end when the project requires.\nThat said, front-end is where I am strongest — it's where I can combine engineering with user experience and bring ideas to life.\nI am mainly looking for front-end opportunities, but I am always open to any challenge that allows me to build something useful and well crafted."
+  }
+}

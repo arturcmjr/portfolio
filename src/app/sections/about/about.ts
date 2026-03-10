@@ -5,6 +5,7 @@ import {
   viewChild,
   ElementRef,
 } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { SectionHeader } from 'app/layout/section-header/section-header';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
@@ -19,7 +20,7 @@ interface TimelineItem {
   selector: 'app-about',
   templateUrl: './about.html',
   styleUrl: './about.scss',
-  imports: [SectionHeader],
+  imports: [SectionHeader, TranslateModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class About implements AfterViewInit {
