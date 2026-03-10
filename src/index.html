@@ -6,8 +6,43 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    #app-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #060A0D;
+      z-index: 9999;
+    }
+
+    .loader {
+      width: 35px;
+      aspect-ratio: 1;
+      --_g: no-repeat radial-gradient(circle closest-side,#38ef7d 90%,#0000);
+      background: 
+        var(--_g) 0    0,
+        var(--_g) 0    100%,
+        var(--_g) 100% 100%;
+      background-size: 40% 40%;
+      animation:l11 1s infinite linear;
+    }
+    @keyframes l11 {
+        25% {background-position:100% 0   ,0 100%,100% 100%}
+        50% {background-position:100% 0   ,0 0   ,100% 100%}
+        75% {background-position:100% 0   ,0 0   ,0    100%}
+        100%{background-position:100% 100%,0 0   ,0    100%}
+    }
+  </style>
 </head>
 <body>
+  <div id="app-loader" aria-live="polite" aria-label="Loading application">
+    <div class="loader"></div> 
+  </div>
   <app-root></app-root>
 </body>
 </html>
