@@ -13,9 +13,8 @@ html {
   font-family: var.$primary-font;
 }
 
-html,
-body,
-* {
+body.custom-cursor-enabled,
+body.custom-cursor-enabled * {
   cursor: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=='), auto !important;
 }
 

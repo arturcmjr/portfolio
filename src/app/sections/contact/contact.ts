@@ -12,7 +12,7 @@ import { CursorType } from '@shared/directives/cursor-type';
 import { ContactIcon } from './components/contact-icon/contact-icon';
 import { Flip } from 'gsap/Flip';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { isMobileDevice } from '@shared/utils/utils';
+import isMobile from 'is-mobile';
 import { SectionHeader } from 'app/layout/section-header/section-header';
 enum Container {
   Icons,
@@ -46,7 +46,7 @@ export class Contact implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    if (isMobileDevice()) return;
+    if (isMobile()) return;
 
     this.flipToDesktopContainer();
 

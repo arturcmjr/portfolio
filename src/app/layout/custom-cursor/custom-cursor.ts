@@ -1,12 +1,14 @@
 import {
   Component,
   OnInit,
+  OnDestroy,
   Renderer2,
   signal,
   inject,
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import isMobile from 'is-mobile';
 
 @Component({
   selector: 'app-custom-cursor',
@@ -20,29 +22,33 @@ import { CommonModule } from '@angular/common';
     '(document:mouseenter)': 'onMouseEnter()',
     '(document:mousedown)': 'onMouseDown()',
     '(document:mouseup)': 'onMouseUp()',
+    '(window:resize)': 'onWindowResize()',
   },
 })
-export class CustomCursor implements OnInit {
+export class CustomCursor implements OnInit, OnDestroy {
   private renderer = inject(Renderer2);
-  private hasMouse = signal(false);
+  private readonly bodyCursorClass = 'custom-cursor-enabled';
+  protected readonly showCustomCursor = signal(false);
 
-  x = signal(0);
-  y = signal(0);
-  cursorClass = signal('');
-  isClicked = signal(false);
+  protected readonly x = signal(0);
+  protected readonly y = signal(0);
+  protected readonly cursorClass = signal('');
+  protected readonly isClicked = signal(false);
 
   ngOnInit(): void {
-    const hasFinePointer = window.matchMedia?.('(any-pointer: fine)')?.matches ?? false;
-    const hasHover = window.matchMedia?.('(any-hover: hover)')?.matches ?? false;
-    this.hasMouse.set(hasFinePointer && hasHover);
-
-    if (!this.hasMouse()) return;
-
-    this.renderer.setStyle(document.body, 'cursor', 'none');
+    this.updateCursorMode();
   }
 
-  onMouseMove(event: MouseEvent): void {
-    if (!this.hasMouse()) return;
+  ngOnDestroy(): void {
+    this.renderer.removeClass(document.body, this.bodyCursorClass);
+  }
+
+  protected onWindowResize(): void {
+    this.updateCursorMode();
+  }
+
+  protected onMouseMove(event: MouseEvent): void {
+    if (!this.showCustomCursor()) return;
 
     this.x.set(event.clientX);
     this.y.set(event.clientY);
@@ -51,17 +57,30 @@ export class CustomCursor implements OnInit {
     this.cursorClass.set(this.getCursorClass(target));
   }
 
-  onMouseDown(): void {
-    if (!this.hasMouse()) return;
+  protected onMouseDown(): void {
+    if (!this.showCustomCursor()) return;
 
     this.isClicked.set(true);
   }
 
-  onMouseUp(): void {
-    if (!this.hasMouse()) return;
+  protected onMouseUp(): void {
+    if (!this.showCustomCursor()) return;
 
     this.isClicked.set(false);
   }
+
+  protected onMouseLeave(): void {
+    if (!this.showCustomCursor()) return;
+
+    this.cursorClass.set('hidden');
+  }
+
+  protected onMouseEnter(): void {
+    if (!this.showCustomCursor()) return;
+
+    this.cursorClass.set('');
+  }
+
 
   private getCursorClass(el: HTMLElement): string {
     if (!el) return '';
@@ -78,16 +97,18 @@ export class CustomCursor implements OnInit {
 
     return '';
   }
+  
+  private updateCursorMode(): void {
+    const enabled = !isMobile();
+    this.showCustomCursor.set(enabled);
 
-  onMouseLeave(): void {
-    if (!this.hasMouse()) return;
+    if (enabled) {
+      this.renderer.addClass(document.body, this.bodyCursorClass);
+      return;
+    }
 
-    this.cursorClass.set('hidden');
-  }
-
-  onMouseEnter(): void {
-    if (!this.hasMouse()) return;
-
+    this.renderer.removeClass(document.body, this.bodyCursorClass);
     this.cursorClass.set('');
+    this.isClicked.set(false);
   }
 }
