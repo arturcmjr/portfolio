@@ -3,15 +3,18 @@ import { ObserveVisibilityDirective } from '@shared/directives/observe-visibilit
 import { TechIcon } from './components/tech-icon/tech-icon';
 import { gsap } from 'gsap';
 import { SectionHeader } from 'app/layout/section-header/section-header';
+import { TranslateModule } from '@ngx-translate/core';
+import { isMobile } from 'is-mobile';
 
 @Component({
   selector: 'app-technologies',
-  imports: [ObserveVisibilityDirective, TechIcon, SectionHeader],
+  imports: [ObserveVisibilityDirective, TechIcon, SectionHeader, TranslateModule],
   templateUrl: './technologies.html',
   styleUrl: './technologies.scss',
 })
 export class Technologies implements OnInit {
   protected readonly visible: WritableSignal<boolean> = signal(false);
+  protected readonly isMobile = isMobile();
 
   protected onVisibilityChange(isVisible: boolean): void {
     this.visible.set(isVisible);
@@ -25,7 +28,6 @@ export class Technologies implements OnInit {
       duration: 1,
       stagger: 0.2,
       scrollTrigger: {
-        // markers: true,
         trigger: techGrid,
         start: 'top 80%',
         end: 'bottom 20%',

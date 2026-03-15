@@ -1,6 +1,6 @@
-<app-section-header title="Technologies"/>
+<app-section-header [title]="'technologies.title' | translate" />
 <p class="secondary">
-  Hover over the icons to see more info about each technology.
+  {{ (isMobile ? 'technologies.hint_mobile' : 'technologies.hint_desktop') | translate }}
 </p>
 <div
   class="tech-grid"

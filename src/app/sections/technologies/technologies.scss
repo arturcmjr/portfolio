@@ -2,14 +2,19 @@
 
 :host {
   width: 100%;
+
+  p.secondary {
+    text-align: center;
+    margin-top: 0;
+  }
 }
 
 .tech-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 60px);
+  grid-template-columns: repeat(auto-fit, 75px);
   gap: var.$spacing-large;
   justify-items: center;
   align-items: center;
   justify-content: center;
-  padding: 40px;
+  padding: 0 var.$spacing-large;
 }
