@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, output } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { AfterViewInit, Component, inject, output } from '@angular/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { TextPlugin } from 'gsap/TextPlugin';
+import { delay, take } from 'rxjs';
 
 gsap.registerPlugin(SplitText, TextPlugin);
 
@@ -13,24 +14,36 @@ gsap.registerPlugin(SplitText, TextPlugin);
   styleUrl: './intro.scss',
 })
 export class Intro implements AfterViewInit {
+  private readonly translate = inject(TranslateService);
   readonly introFinished = output<void>();
 
   ngAfterViewInit(): void {
-    // TODO: wait for fonts to load
-    // TODO: remove it after testing
-    this.introFinished.emit();
-    return;
-
-    window.setTimeout(() => {
-      const mainTl = gsap.timeline();
-      mainTl.add(this.getGreetingsAnimation());
-      mainTl.add(this.getNameAnimation(), '+=0.3');
-      mainTl.add(this.getMainTextAnimation(), '+=0.2');
-      mainTl.add(this.getPictureAnimation(), '+=0.2');
-      mainTl.call(() => {
-        this.introFinished.emit();
+    this.translate
+      .get('intro.description')
+      .pipe(take(1), delay(0))
+      .subscribe(() => {
+        if (!this.shouldAnimate()) {
+          this.introFinished.emit();
+        } else {
+          this.startAnimation();
+        }
       });
-    }, 1000);
+  }
+
+  private startAnimation() {
+    const mainTl = gsap.timeline();
+    mainTl.add(this.getGreetingsAnimation());
+    mainTl.add(this.getNameAnimation(), '+=0.3');
+    mainTl.add(this.getMainTextAnimation(), '+=0.2');
+    mainTl.add(this.getPictureAnimation(), '+=0.2');
+    mainTl.call(() => {
+      this.introFinished.emit();
+    });
+  }
+
+  private shouldAnimate(): boolean {
+    // TODO: disable if the env is production
+    return false;
   }
 
   private getGreetingsAnimation() {
@@ -44,7 +57,7 @@ export class Intro implements AfterViewInit {
       tl.fromTo(
         word,
         { opacity: 0, scale: 10, y: 100, duration: 0.02 },
-        { opacity: 1, duration: 0.4 }
+        { opacity: 1, duration: 0.4 },
       ).to(word, { scale: 1, y: 0, duration: 0.3, ease: 'power3.out' });
     });
 
@@ -78,7 +91,7 @@ export class Intro implements AfterViewInit {
         duration: 0.6,
         ease: 'power3.out',
         stagger: 0.05,
-      }
+      },
     );
     return tl;
   }
@@ -94,7 +107,7 @@ export class Intro implements AfterViewInit {
         y: 0,
         duration: 0.6,
         ease: 'power3.out',
-      }
+      },
     );
     return tl;
   }

@@ -1,6 +1,4 @@
-<app-section-header title="About Me" id="about-section" />
-<div class="text" #textContainer>
-  @for(paragraph of paragraphs(); track paragraph) {
-    <p>{{ paragraph }}</p>
-  }
+<app-section-header [title]="'about.title' | translate" id="about-section" />
+<div class="text">
+  <p #paragraphElement>{{ 'about.content' | translate }}</p>
 </div>

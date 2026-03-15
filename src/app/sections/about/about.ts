@@ -4,14 +4,12 @@ import {
   AfterViewInit,
   viewChild,
   ElementRef,
+  DestroyRef,
   inject,
-  signal,
 } from '@angular/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { SectionHeader } from 'app/layout/section-header/section-header';
 import { gsap } from 'gsap';
-import { SplitText } from 'gsap/SplitText';
-import { take } from 'rxjs';
 
 @Component({
   selector: 'app-about',
@@ -21,45 +19,44 @@ import { take } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class About implements AfterViewInit {
-  private readonly translate = inject(TranslateService);
-  private readonly textContainer = viewChild<ElementRef<HTMLElement>>('textContainer');
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly paragraphElement = viewChild<ElementRef<HTMLElement>>('paragraphElement');
+  private animation?: gsap.core.Tween;
 
-  protected paragraphs = signal<string[]>([]);
+  constructor() {
+    this.destroyRef.onDestroy(() => this.disposeAnimation());
+  }
 
   ngAfterViewInit(): void {
-    this.translate
-      .get('about.content')
-      .pipe(take(1))
-      .subscribe((content: string) => {
-        this.paragraphs.set(content.split('\n'));
-        setTimeout(() => this.initAnimation(), 0);
-      });
+    this.initAnimation();
   }
 
   private initAnimation(): void {
-    const timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: this.textContainer()?.nativeElement,
-        start: 'top 100%',
-        end: 'bottom 20%',
-        toggleActions: 'play none none reverse',
-      },
-    });
-    const paragraphs = this.textContainer()?.nativeElement.querySelectorAll('p');
-    if (!paragraphs) return;
-    paragraphs.forEach((p) => {
-      const split = new SplitText(p, { type: 'lines' });
-      timeline.fromTo(
-        split.lines,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.4,
-          ease: 'power3.out',
-          stagger: 0.1,
+    this.disposeAnimation();
+
+    const paragraph = this.paragraphElement()?.nativeElement;
+    if (!paragraph) return;
+
+    this.animation = gsap.fromTo(
+      paragraph,
+      { opacity: 0, y: 24 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: paragraph,
+          start: 'top 90%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none reverse',
         },
-      );
-    });
+      },
+    );
+  }
+
+  private disposeAnimation(): void {
+    this.animation?.kill();
+    this.animation = undefined;
   }
 }

@@ -47,6 +47,7 @@ export class App {
     this.translate.addLangs(['pt-BR', 'en']);
     this.translate.setFallbackLang('en');
     this.translate.use('pt-BR');
+    this.document.body.style.overflow = 'hidden';
   }
 
   protected onIntroFinished(): void {
