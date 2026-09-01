@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, signal, viewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ExperienceCard } from './components/experience-card/experience-card';
 import { gsap } from 'gsap';
-import { SectionHeader } from 'app/layout/section-header/section-header';
+import { SectionHeader } from '@app/layout/section-header/section-header';
 
 @Component({
   selector: 'app-experience',

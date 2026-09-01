@@ -2,7 +2,7 @@ import { Component, OnInit, signal, WritableSignal, ChangeDetectionStrategy } fr
 import { ObserveVisibilityDirective } from '@shared/directives/observe-visibility';
 import { TechIcon } from './components/tech-icon/tech-icon';
 import { gsap } from 'gsap';
-import { SectionHeader } from 'app/layout/section-header/section-header';
+import { SectionHeader } from '@app/layout/section-header/section-header';
 import { TranslateModule } from '@ngx-translate/core';
 import { isMobile } from 'is-mobile';
 

@@ -14,7 +14,7 @@ import { ContactIcon } from './components/contact-icon/contact-icon';
 import { Flip } from 'gsap/Flip';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import isMobile from 'is-mobile';
-import { SectionHeader } from 'app/layout/section-header/section-header';
+import { SectionHeader } from '@app/layout/section-header/section-header';
 enum Container {
   Icons,
   Desktop,

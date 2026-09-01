@@ -8,7 +8,7 @@ import {
   inject,
 } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { SectionHeader } from 'app/layout/section-header/section-header';
+import { SectionHeader } from '@app/layout/section-header/section-header';
 import { gsap } from 'gsap';
 
 @Component({
