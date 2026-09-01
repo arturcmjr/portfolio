@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, WritableSignal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { ObserveVisibilityDirective } from '@shared/directives/observe-visibility';
 import { TechIcon } from './components/tech-icon/tech-icon';
 import { gsap } from 'gsap';
@@ -10,7 +10,6 @@ import { isMobile } from 'is-mobile';
   selector: 'app-technologies',
   imports: [ObserveVisibilityDirective, TechIcon, SectionHeader, TranslateModule],
   templateUrl: './technologies.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './technologies.scss',
 })
 export class Technologies implements OnInit {

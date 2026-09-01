@@ -1,11 +1,10 @@
-import { AfterViewInit, Component, ElementRef, input, viewChild, ChangeDetectionStrategy } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, input, viewChild } from '@angular/core';
 import { gsap } from 'gsap';
 
 @Component({
   selector: 'app-section-header',
   imports: [],
   templateUrl: './section-header.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './section-header.scss',
 })
 export class SectionHeader implements AfterViewInit {

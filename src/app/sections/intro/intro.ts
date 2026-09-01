@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject, output, ChangeDetectionStrategy } from '@angular/core';
+import { AfterViewInit, Component, inject, output } from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
@@ -11,7 +11,6 @@ gsap.registerPlugin(SplitText, TextPlugin);
   selector: 'app-intro',
   imports: [TranslateModule],
   templateUrl: './intro.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './intro.scss',
 })
 export class Intro implements AfterViewInit {
@@ -44,7 +43,7 @@ export class Intro implements AfterViewInit {
 
   private shouldAnimate(): boolean {
     // TODO: disable if the env is production
-    return false;
+    return true;
   }
 
   private getGreetingsAnimation() {

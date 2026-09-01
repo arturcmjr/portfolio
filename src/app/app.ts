@@ -1,4 +1,4 @@
-import { Component, DOCUMENT, inject, signal, WritableSignal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, DOCUMENT, inject, signal, WritableSignal } from '@angular/core';
 import { NightSkyComponent } from './layout/night-sky/night-sky';
 import { Header } from './layout/header/header';
 import { Intro } from './sections/intro/intro';
@@ -36,7 +36,6 @@ gsap.registerPlugin(ScrollToPlugin);
     Sidebar,
   ],
   templateUrl: './app.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './app.scss',
 })
 export class App {

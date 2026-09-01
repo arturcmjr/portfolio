@@ -1,4 +1,4 @@
-import { Component, computed, DOCUMENT, ElementRef, inject, OnInit, signal, viewChildren, ChangeDetectionStrategy } from '@angular/core';
+import { Component, computed, DOCUMENT, ElementRef, inject, OnInit, signal, viewChildren } from '@angular/core';
 import { scrollToSection } from '@shared/utils/scroll-to-section';
 import { gsap } from 'gsap';
 
@@ -6,7 +6,6 @@ import { gsap } from 'gsap';
   selector: 'app-sidebar',
   imports: [],
   templateUrl: './sidebar.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './sidebar.scss',
 })
 export class Sidebar  implements OnInit {
