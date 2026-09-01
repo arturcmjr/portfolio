@@ -7,6 +7,7 @@ import {
   OnDestroy,
   signal,
   viewChild,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { CursorType } from '@shared/directives/cursor-type';
 import { ContactIcon } from './components/contact-icon/contact-icon';
@@ -23,6 +24,7 @@ enum Container {
   selector: 'app-contact',
   imports: [SectionHeader, CursorType, ContactIcon],
   templateUrl: './contact.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './contact.scss',
 })
 export class Contact implements AfterViewInit, OnDestroy {

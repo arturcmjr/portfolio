@@ -1,4 +1,4 @@
-import { Component, effect, ElementRef, input, viewChild } from '@angular/core';
+import { Component, effect, ElementRef, input, viewChild, ChangeDetectionStrategy } from '@angular/core';
 import { CursorType } from '@shared/directives/cursor-type';
 import { Tilt } from '@shared/directives/tilt';
 import { gsap } from 'gsap';
@@ -7,6 +7,7 @@ import { gsap } from 'gsap';
   selector: 'app-experience-card',
   imports: [Tilt, CursorType],
   templateUrl: './experience-card.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './experience-card.scss',
 })
 export class ExperienceCard {

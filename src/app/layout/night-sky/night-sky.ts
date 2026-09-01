@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, viewChild, input, ElementRef, OnDestroy } from '@angular/core';
+import { Component, AfterViewInit, viewChild, input, ElementRef, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 
 interface Star {
   x: number;
@@ -16,6 +16,7 @@ interface Star {
   imports: [],
   templateUrl: './night-sky.html',
   styleUrl: './night-sky.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   host: {
     '(window:resize)': 'handleResize()'
   }

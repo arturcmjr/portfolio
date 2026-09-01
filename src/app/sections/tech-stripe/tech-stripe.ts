@@ -1,10 +1,11 @@
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-tech-stripe',
   imports: [],
   templateUrl: './tech-stripe.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './tech-stripe.scss'
 })
 export class TechStripe {

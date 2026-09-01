@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, signal, viewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, signal, viewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ExperienceCard } from './components/experience-card/experience-card';
 import { gsap } from 'gsap';
 import { SectionHeader } from 'app/layout/section-header/section-header';
@@ -7,6 +7,7 @@ import { SectionHeader } from 'app/layout/section-header/section-header';
   selector: 'app-experience',
   imports: [ExperienceCard, SectionHeader],
   templateUrl: './experience.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './experience.scss',
 })
 export class Experience implements AfterViewInit {

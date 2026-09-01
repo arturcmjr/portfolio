@@ -1,9 +1,10 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-contact-icon',
   imports: [],
   templateUrl: './contact-icon.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './contact-icon.scss',
 })
 export class ContactIcon {
