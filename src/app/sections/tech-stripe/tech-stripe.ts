@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-tech-stripe',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './tech-stripe.html',
   styleUrl: './tech-stripe.scss'
 })

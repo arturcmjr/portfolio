@@ -7,12 +7,12 @@ import {
   inject,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import isMobile from 'is-mobile';
 
 @Component({
   selector: 'app-custom-cursor',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './custom-cursor.html',
   styleUrls: ['./custom-cursor.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
