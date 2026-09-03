@@ -15,6 +15,7 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { Contact } from './sections/contact/contact';
 import { Sidebar } from './layout/sidebar/sidebar';
 import { TranslateService } from '@ngx-translate/core';
+import { GameButton } from './sections/game-button/game-button';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
@@ -34,6 +35,7 @@ gsap.registerPlugin(ScrollToPlugin);
     Projects,
     Contact,
     Sidebar,
+    GameButton,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',

@@ -2,6 +2,7 @@
 <app-custom-cursor />
 <div id="appWrapper" class="wrapper">
   <app-header [hidden]="!introFinished()" />
+  <app-game-button />
   <app-sidebar />
   <app-intro (introFinished)="onIntroFinished()" />
   <app-tech-stripe />
