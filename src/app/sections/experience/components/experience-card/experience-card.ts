@@ -12,23 +12,34 @@ import { gsap } from 'gsap';
 export class ExperienceCard {
   readonly card = viewChild<ElementRef<HTMLDivElement>>('card');
 
-  readonly title = input<string>();
-  readonly description = input<string>();
+  readonly title = input.required<string>();
+  readonly meta = input<string>('');
+  readonly description = input.required<string>();
   readonly collapsed = input<boolean>(false);
 
   constructor() {
-    effect(() => {
+    effect((onCleanup) => {
+      // Re-run when translated content changes so height is recalculated.
+      this.title();
+      this.meta();
+      this.description();
+
       const collapsed = this.collapsed();
       const card = this.card();
       if (!card) {
         return;
       }
-      const expandedHeight = `${card.nativeElement.scrollHeight}px`;
-      gsap.to(card.nativeElement, {
-        maxHeight: collapsed ? '15px' : expandedHeight,
-        duration: 0.5,
-        ease: 'power2.out',
+
+      const rafId = requestAnimationFrame(() => {
+        const expandedHeight = `${card.nativeElement.scrollHeight}px`;
+        gsap.to(card.nativeElement, {
+          maxHeight: collapsed ? '15px' : expandedHeight,
+          duration: 0.5,
+          ease: 'power2.out',
+        });
       });
+
+      onCleanup(() => cancelAnimationFrame(rafId));
     });
   }
 }

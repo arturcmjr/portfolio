@@ -46,7 +46,7 @@ export class App {
   constructor() {
     this.translate.addLangs(['pt-BR', 'en']);
     this.translate.setFallbackLang('en');
-    this.translate.use('pt-BR');
+    this.translate.use('en');
     this.document.body.style.overflow = 'hidden';
   }
 

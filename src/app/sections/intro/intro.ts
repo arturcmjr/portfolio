@@ -43,7 +43,7 @@ export class Intro implements AfterViewInit {
 
   private shouldAnimate(): boolean {
     // TODO: disable if the env is production
-    return true;
+    return false;
   }
 
   private getGreetingsAnimation() {

@@ -15,6 +15,84 @@
     "title": "Sobre mim",
     "content": "Tenho mais de 8 anos de experiência desenvolvendo software, sendo que nos últimos 5 anos estive focado em desenvolvimento web, especialmente em ambientes SaaS. Trabalho principalmente com Angular e .NET, e gosto de transitar entre front-end e back-end quando o projeto exige.\n\nDito isso, o front-end é onde sou mais forte — é onde consigo combinar engenharia com experiência do usuário e dar vida às ideias.\n\nBusco principalmente oportunidades em front-end, mas estou sempre aberto a qualquer desafio que me permita construir algo útil e bem feito."
   },
+  "experience": {
+    "workTitle": "Experiência Profissional",
+    "educationTitle": "Formação",
+    "currentLabel": "Atual",
+    "workExperience": [
+      {
+        "position": "Desenvolvedor Web Full-stack",
+        "company": "Stefanini",
+        "location": "Brasilia",
+        "workMode": "Remoto",
+        "startDate": "02/2026",
+        "endDate": null,
+        "description": "Atuação no desenvolvimento de interfaces front-end utilizando Angular, com participação na implementação, integração e manutenção de serviços back-end em Java."
+      },
+      {
+        "position": "Desenvolvedor Web Full-stack",
+        "company": "Autotrac",
+        "location": "Brasilia",
+        "workMode": "Remoto",
+        "startDate": "03/2023",
+        "endDate": "02/2026",
+        "description": "Desenvolvimento de aplicações web com foco em front-end utilizando Angular, atuando também na integração, manutenção e evolução de serviços back-end desenvolvidos em .NET."
+      },
+      {
+        "position": "Desenvolvedor Web Full-stack",
+        "company": "Adven.Tech",
+        "location": "Cornelio Procopio",
+        "workMode": "Remoto",
+        "startDate": "10/2020",
+        "endDate": "09/2022",
+        "description": "Desenvolvimento de soluções web escaláveis como desenvolvedor full-stack, com participação ativa na modernização e migração de sistemas legados para tecnologias mais atuais."
+      },
+      {
+        "position": "Designer",
+        "company": "ADRA Brasil",
+        "location": "Brasilia",
+        "workMode": "Presencial",
+        "startDate": "12/2018",
+        "endDate": "10/2020",
+        "description": "Criação de identidades visuais e materiais gráficos para campanhas, além da otimização de processos internos por meio do desenvolvimento de automações utilizando VBA e SQL."
+      },
+      {
+        "position": "Desenvolvedor de Jogos",
+        "company": "Roundstars",
+        "location": "Brasilia",
+        "workMode": "Hibrido",
+        "startDate": "05/2017",
+        "endDate": "07/2018",
+        "description": "Desenvolvimento completo de jogos utilizando Unity Engine e C#, abrangendo programação de mecânicas, inteligência artificial, sistemas de jogo e interfaces de usuário."
+      }
+    ],
+    "education": [
+      {
+        "degree": "Bacharelado em Ciência da Computação",
+        "institution": "Descomplica",
+        "completionDate": "10/2025",
+        "description": "Formação abrangente em computação, com foco em desenvolvimento web full-stack. Estudos em programação, estruturas de dados, bancos de dados, engenharia de software, arquitetura de sistemas e metodologias ágeis."
+      },
+      {
+        "degree": "Pós-Graduação em Análise e Desenvolvimento de Sistemas",
+        "institution": "Descomplica",
+        "completionDate": "06/2022",
+        "description": "Formação focada no desenvolvimento e gerenciamento de sistemas, abrangendo estruturas de dados, engenharia de software, gerenciamento de projetos, DevOps e fundamentos do ciclo de desenvolvimento."
+      },
+      {
+        "degree": "Pós-Graduação em Desenvolvimento de Aplicativos Móveis",
+        "institution": "Descomplica",
+        "completionDate": "06/2022",
+        "description": "Formação focada no desenvolvimento de aplicações móveis, com contato com frameworks para desenvolvimento híbrido e fundamentos de desenvolvimento nativo para iOS e Android."
+      },
+      {
+        "degree": "Graduação em Desenvolvimento de Jogos",
+        "institution": "IESB",
+        "completionDate": "06/2018",
+        "description": "Formação em desenvolvimento de jogos, abrangendo programação orientada a objetos, gameplay, inteligência artificial, level design, arte 2D e 3D e áudio. Reconhecimento com o prêmio de melhor jogo desenvolvido durante o segundo semestre de 2017."
+      }
+    ]
+  },
   "technologies": {
     "title": "Tecnologias",
     "hint_mobile": "Toque nos ícones para saber mais",

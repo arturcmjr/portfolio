@@ -1,26 +1,28 @@
 <div id="work-section">
-  <app-section-header title="Work Experience"/>
+  <app-section-header [title]="workTitle()" />
   <div class="experiences" #workExperiencesList>
-    @for (item of [0, 1, 2, 3]; track item) {
+    @for (item of workCards(); track $index; let idx = $index) {
       <app-experience-card
-        title="Role Title"
-        description="empty"
-        [collapsed]="selectedWorkIndex() !== item"
-        (click)="selectedWorkIndex.set(item)"
-      />
+        [title]="item.title"
+        [meta]="item.meta"
+        [description]="item.description"
+        [collapsed]="item.collapsed"
+        (click)="selectedWorkIndex.set(idx)"
+      ></app-experience-card>
     }
   </div>
 </div>
 <div>
-  <app-section-header title="Education"/>
+  <app-section-header [title]="educationTitle()" />
   <div class="experiences" #educationExperiences>
-    @for (item of [0, 1, 2, 3]; track item) {
+    @for (item of educationCards(); track $index; let idx = $index) {
       <app-experience-card
-        title="Education Title"
-        description="empty"
-        [collapsed]="selectedEducationIndex() !== item"
-        (click)="selectedEducationIndex.set(item)"
-      />
+        [title]="item.title"
+        [meta]="item.meta"
+        [description]="item.description"
+        [collapsed]="item.collapsed"
+        (click)="selectedEducationIndex.set(idx)"
+      ></app-experience-card>
     }
   </div>
 </div>
