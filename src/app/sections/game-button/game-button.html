@@ -1,1 +1,3 @@
-<fa-icon [icon]="faGamepad" class="game-button" />
+<button type="button" class="game-button" (click)="onClick()" [attr.aria-label]="isGameMode() ? 'Go back to portfolio' : 'Open space game'">
+  <fa-icon [icon]="isGameMode() ? faArrowLeft : faGamepad" />
+</button>

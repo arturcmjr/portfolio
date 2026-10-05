@@ -1,16 +1,21 @@
-<app-night-sky [starCount]="80" />
-<app-custom-cursor />
-<div id="appWrapper" class="wrapper">
-  <app-header [hidden]="!introFinished()" />
-  <app-game-button />
-  <app-sidebar />
-  <app-intro (introFinished)="onIntroFinished()" />
-  <app-tech-stripe />
-  <div class="about">
-    <app-about />
-    <app-technologies />
+@if (!isGameActive()) {
+  <app-night-sky [starCount]="80" />
+  <app-custom-cursor />
+  <div id="appWrapper" class="wrapper">
+    <app-header [hidden]="!introFinished()" />
+    <app-game-button (toggleGame)="toggleGame()" />
+    <app-sidebar />
+    <app-intro (introFinished)="onIntroFinished()" />
+    <app-tech-stripe />
+    <div class="about">
+      <app-about />
+      <app-technologies />
+    </div>
+    <app-experience />
+    <app-projects />
+    <app-contact [hideIcons]="!introFinished()" />
   </div>
-  <app-experience />
-  <app-projects />
-  <app-contact [hideIcons]="!introFinished()" />
-</div>
+} @else {
+  <app-space-game />
+  <app-game-button [isGameMode]="true" (toggleGame)="closeGame()" />
+}

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { faGamepad } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faGamepad } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   imports: [FaIconComponent],
@@ -13,4 +13,12 @@ import { faGamepad } from '@fortawesome/free-solid-svg-icons';
 })
 export class GameButton {
   protected readonly faGamepad = faGamepad;
+  protected readonly faArrowLeft = faArrowLeft;
+
+  readonly isGameMode = input(false);
+  readonly toggleGame = output<void>();
+
+  protected onClick(): void {
+    this.toggleGame.emit();
+  }
 }

@@ -16,6 +16,7 @@ import { Contact } from './sections/contact/contact';
 import { Sidebar } from './layout/sidebar/sidebar';
 import { TranslateService } from '@ngx-translate/core';
 import { GameButton } from './sections/game-button/game-button';
+import { SpaceGameComponent } from './game/space-game';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
@@ -36,6 +37,7 @@ gsap.registerPlugin(ScrollToPlugin);
     Contact,
     Sidebar,
     GameButton,
+    SpaceGameComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
@@ -43,6 +45,7 @@ gsap.registerPlugin(ScrollToPlugin);
 export class App {
   private readonly translate = inject(TranslateService);
   protected readonly introFinished: WritableSignal<boolean> = signal(false);
+  protected readonly isGameActive: WritableSignal<boolean> = signal(false);
   private document = inject(DOCUMENT);
 
   constructor() {
@@ -54,6 +57,16 @@ export class App {
 
   protected onIntroFinished(): void {
     this.introFinished.set(true);
+    this.document.body.style.overflow = 'auto';
+  }
+
+  protected toggleGame(): void {
+    this.isGameActive.update((value) => !value);
+    this.document.body.style.overflow = this.isGameActive() ? 'hidden' : 'auto';
+  }
+
+  protected closeGame(): void {
+    this.isGameActive.set(false);
     this.document.body.style.overflow = 'auto';
   }
 }
